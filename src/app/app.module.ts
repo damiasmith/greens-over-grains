@@ -12,6 +12,7 @@ import { ListViewComponent } from './home/browse-food/list-view/list-view.compon
 import { FoodItemDetailsComponent } from './home/browse-food/food-item-details/food-item-details.component';
 import { RestaurantDetailsComponent } from './home/browse-food/restaurant-details/restaurant-details.component';
 import { MapViewComponent } from './home/browse-food/map-view/map-view.component';
+import { SignUpComponent } from './home/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MapViewComponent } from './home/browse-food/map-view/map-view.component
     ListViewComponent,
     FoodItemDetailsComponent,
     RestaurantDetailsComponent,
-    MapViewComponent
+    MapViewComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule

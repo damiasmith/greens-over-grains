@@ -1,4 +1,13 @@
-.greens-background {
-    background-image: url("src/Assets/leafy-background.jpg");
-    background-color: green;
+.thumbnail {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+}
+.searchbar {
+    position: absolute;
+    top: 85%;
+    left: 35%;
+    width: 100%;
+    
 }
