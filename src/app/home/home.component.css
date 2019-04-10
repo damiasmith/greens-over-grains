@@ -1,13 +1,37 @@
-.thumbnail {
-    position: absolute;
-    top: 45%;
-    left: 0;
-    width: 100%;
-}
 .searchbar {
     position: absolute;
     top: 85%;
     left: 35%;
     width: 100%;
     
+}
+.jumbotron {
+    margin: auto;
+    background-color: transparent;
+    position: absolute;
+    top: 15%;
+    left: 28%;
+    width: 35rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.greens {
+    align-self: flex-start;
+    
+}
+
+.display-3 {
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+
+}
+
+.grains {
+    align-self: flex-end;
 }
