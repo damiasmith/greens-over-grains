@@ -1,14 +1,24 @@
 .fixed-top {
-    margin: auto;  
-    
+    margin: auto;
+    padding: 0; 
+    box-sizing: border-box; 
 
 }
+.container {
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
 ul {
     margin: 1rem;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap column;
     justify-content: space-between; 
-    align-items: center;
     padding: 0;
     
 }
