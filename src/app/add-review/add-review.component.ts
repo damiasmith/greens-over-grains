@@ -7,6 +7,25 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent implements OnInit {
+  food = new FormGroup({
+    'item-name': new FormControl(),
+    'restaurant-name': new FormControl(),
+    filter: new FormGroup({
+      'gluten-free': new FormControl(),
+      vegetarian: new FormControl(),
+      vegan: new FormControl(),
+      pescatarian: new FormControl(),
+    }),
+    rating: new FormGroup({
+      'one-star': new FormControl(),
+      'two-star': new FormControl(),
+      'tree-star': new FormControl(),
+      'four-star': new FormControl(),
+      'five-star': new FormControl(),
+    }),
+    'image-file': new FormControl(),
+  });
+  
   selectedFile: File;
   @Input() rating: number;
   @Input() itemId: number;
@@ -23,10 +42,10 @@ export class AddReviewComponent implements OnInit {
     this.rating = rating;
     this.ratingClick.emit({
       itemId: this.itemId,
-      rating: rating
+      rating
     });
   }
-  
+
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
   }

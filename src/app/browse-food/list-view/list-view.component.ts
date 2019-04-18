@@ -8,7 +8,6 @@ interface FoodItem {
   filter: Array<string>;
   rating: number;
   image: File;
-
 }
 
 interface Restaurant {
@@ -25,7 +24,7 @@ interface Restaurant {
   styleUrls: ['./list-view.component.css']
 })
 export class ListViewComponent implements OnInit {
-  
+
 
   constructor() { }
 

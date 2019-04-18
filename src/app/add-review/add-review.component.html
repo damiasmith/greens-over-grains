@@ -5,41 +5,43 @@
     </div> 
   </div>
 
-  <form> 
+  <form [formGroup]="food"> 
     <div class="form-group row"> 
       <label for="inputFoodItem" class="col-sm-2 form-control-label">Food Item</label> 
       <div class="col-sm-10"> 
-        <input type="text" class="form-control" id="foodItem" placeholder="Food Item"> 
+        <input formControlName="item-name" type="text" class="form-control" id="foodItem" placeholder="Food Item"> 
       </div> 
     </div><div class="form-group row"> 
       <label for="inputRestaurant" class="col-sm-2 form-control-label">Restaurant</label> 
         <div class="col-sm-10"> 
-          <input type="text" class="form-control" id="restaurant" placeholder="Restaurant"> 
+          <input formControlName="restaurant-name" type="text" class="form-control" id="restaurant" placeholder="Restaurant"> 
         </div> 
     </div> 
     <div class="form-group row">
-          <label for="filter" class="col-sm-2 form-control-label">Filter</label> 
+      <label for="filter" class="col-sm-2 form-control-label">Filter</label> 
             <div class="dropdown">
-              <label class="dropdown-label">Filter</label>
+      
           
                 <div class="dropdown-list">  
                   <div class="checkbox">
-                    <input type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-gluten-free"/>
+                    <input formControlName="gluten-free"type="checkbox" name="gluten-free" class="check checkbox-custom" id="checkbox-gluten-free"/>
                     <label for="checkbox-gluten-free" class="checkbox-custom-label">Gluten-Free</label>
                   </div>
             
                   <div class="checkbox">
-                    <input type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-custom_02"/>
+                    <input formControlName="vegetarian" type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-custom_02"/>
                     <label for="checkbox-custom_02" class="checkbox-custom-label">Vegetarian</label>
                   </div>
               
                   <div class="checkbox">
-                    <input type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-custom_03"/>
+                    <input formControlName="vegan" type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-custom_03">
                     <label for="checkbox-custom_03" class="checkbox-custom-label">Vegan</label>
                   </div>
             
+            
+
                   <div class="checkbox">
-                    <input type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-custom_04"/>
+                    <input formControlName="pescatarian" type="checkbox" name="dropdown-group" class="check checkbox-custom" id="checkbox-custom_04"/>
                     <label for="checkbox-custom_04" class="checkbox-custom-label">Pescatarian</label>
                   </div>
                 </div>
@@ -49,19 +51,19 @@
         <div class="form-group row">
           <label for="rating" class="col-sm-2 form-control-label">Rating</label>
             <div class="rating">
-                <input type="radio" [name]="inputName" value="5" [checked]="rating===5" />
+                <input formControlName="one" type="radio" [name]="inputName" value="5" [checked]="rating===5" />
                 <label title="five" (click)='onClick(5)'>5 stars</label>
               
-                <input type="radio" [name]="inputName" value="4" [checked]="rating===4" />
+                <input formControlName="two" type="radio" [name]="inputName" value="4" [checked]="rating===4" />
                 <label title="four" (click)='onClick(4)'>4 stars</label>
               
-                <input type="radio" [name]="inputName" value="3" [checked]="rating===3" />
+                <input formControlName="three" type="radio" [name]="inputName" value="3" [checked]="rating===3" />
                 <label title="three" (click)='onClick(3)'>3 stars</label>
               
-                <input type="radio" [name]="inputName" value="2" [checked]="rating===2" />
+                <input formControlName="four" type="radio" [name]="inputName" value="2" [checked]="rating===2" />
                 <label title="two" (click)='onClick(2)'>2 stars</label>
               
-                <input type="radio" [name]="inputName" value="1" [checked]="rating===1" />
+                <input formControlName="five" type="radio" [name]="inputName" value="1" [checked]="rating===1" />
                 <label title="one" (click)='onClick(1)'>1 star</label>
               </div>
             </div>
@@ -70,6 +72,7 @@
         <div class="form-group row">
           <label for="image" class="col-sm-2 form-control-label">Image</label>
                   <input
+                  formControlName="image-file"
                   style="display: none"
                   type="file" (change)="onFileChanged($event)"
                   #fileInput>
