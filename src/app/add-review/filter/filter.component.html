@@ -1,30 +1,4 @@
-<div class="container"> 
-    <div class="jumbotron jumbotron-fluid text-center"> 
-      <div class="container"> 
-        <h1 class="display-3">Add Review</h1> 
-      </div> 
-    </div>
-
-  <form [formGroup]="form" ngSubmit="onSubmit()">
-      <div class="form-group row"> 
-      <label for="inputFoodItem" class="col-sm-2 form-control-label">Food Item</label> 
-      <div class="col-sm-10"> 
-        <input 
-          formControlName="itemName" 
-          type="text" class="form-control" 
-          id="itemName" 
-          placeholder="Food Item"> 
-      </div> 
-    </div>
-  
-    <div class="form-group row"> 
-      <label for="inputRestaurant" class="col-sm-2 form-control-label">Restaurant</label> 
-        <div class="col-sm-10"> 
-          <input formControlName="restaurantName" type="text" class="form-control" id="restaurant" placeholder="Restaurant"> 
-        </div> 
-    </div> 
-
-    <div class="form-group row">
+<div class="form-group row">
     <label for="filter" class="col-sm-2 form-control-label">Filter</label>  
       <div class="form-group row" FormArray="filter"> 
         <label class="custom-control custom-checkbox"> 
@@ -53,24 +27,3 @@
                   <span class="custom-control-description">lactose-free</span> 
                 </label> 
       </div>
-    </div>
-    
-  
-
-
-  
-    <div class="form-group row">
-        <label for="image" class="col-sm-2 form-control-label">Image</label>
-                <input>
-              <button class="btn btn-outline-secondary">Select File</button>
-              <button class="btn btn-outline-secondary"></button>
-      </div>
-      <div class="form-group row text-center">
-          <div class="text-center">
-           <button class="btn btn-success" (click)="onAdd()">Add</button>
-      </div>
-    </div>
-    </form>
-</div>
-
-       

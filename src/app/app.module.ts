@@ -14,6 +14,11 @@ import { FoodItemDetailsComponent } from './browse-food/food-item-details/food-i
 import { RestaurantDetailsComponent } from './browse-food/restaurant-details/restaurant-details.component';
 import { MapViewComponent } from './browse-food/map-view/map-view.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { FilterComponent } from './add-review/filter/filter.component';
+import { RatingComponent } from './add-review/rating/rating.component';
+import { ImageComponent } from './add-review/image/image.component';
+import { AddFoodItemService } from './add-review/services/add-food-item.service';
+
 
 @NgModule({
   declarations: [
@@ -27,14 +32,17 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     FoodItemDetailsComponent,
     RestaurantDetailsComponent,
     MapViewComponent,
-    SignUpComponent
+    SignUpComponent,
+    FilterComponent,
+    RatingComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AddFoodItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,22 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Url } from 'url';
+import { AddFoodItemService } from '../../add-review/services/add-food-item.service';
 
-interface FoodItem {
-  id: number;
-  itemName: string;
-  restaurantName: string;
-  filter: Array<string>;
-  rating: number;
-  image: File;
-}
-
-interface Restaurant {
-  id: number;
-  restaurantName: string;
-  address: string;
-  phoneNumber: string;
-  website: Url;
-}
 
 @Component({
   selector: 'app-list-view',
@@ -25,10 +9,16 @@ interface Restaurant {
 })
 export class ListViewComponent implements OnInit {
 
+  foodItems = [];
 
-  constructor() { }
+
+  constructor(private service: AddFoodItemService) { }
 
   ngOnInit() {
+    this.service.getFoodItems()
+    .subscribe(foodItems => { this.foodItems = foodItems as any,
+      console.log(foodItems);
+    });
   }
 
 }

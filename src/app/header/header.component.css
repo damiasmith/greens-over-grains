@@ -1,13 +1,14 @@
 .fixed-top {
     margin: auto;
     padding: 0; 
-    box-sizing: border-box; 
+     
 
 }
 .container {
     display: flex;
+    position: absolute;
     box-sizing: border-box;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     padding: 0;
     width: 100%;

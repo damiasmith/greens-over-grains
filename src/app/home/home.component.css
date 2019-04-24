@@ -1,26 +1,30 @@
+body {
+    background-color: #e9ecef;
+}
+
 .searchbar {
-    display: block;
-    margin: auto;
+    box-sizing: border-box;
+    margin: 10rem;
     position: absolute;
-    top: 85%;
-    left: 35%;
+    top: 70%;
+    padding: 20rem;
     width: 100%;
     
 }
 .jumbotron {
+    box-sizing: border-box;
     width: 100%
 
 }
 
 .container {
-    display: block;
-    margin: auto;
     background-color: transparent;
     position: absolute;
-    top: 18%;
-    text-align: center;
-    width: 100%;
-    max-width: 30rem;
+    top: 25%;
+    left: 27%;
+    padding: 0;
+    width: 50%;
+    max-width: 75%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -32,6 +36,7 @@
 }
 
 .display-3 {
+    font-size: 5rem;
     text-align: center;
     color: white;
     text-shadow:
