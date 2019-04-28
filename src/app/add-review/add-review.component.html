@@ -5,7 +5,7 @@
       </div> 
     </div>
 
-  <form [formGroup]="form" ngSubmit="onSubmit()">
+  <form [formGroup]="form">
       <div class="form-group row"> 
       <label for="inputFoodItem" class="col-sm-2 form-control-label">Food Item</label> 
       <div class="col-sm-10"> 
@@ -25,40 +25,20 @@
     </div> 
 
     <div class="form-group row">
-    <label for="filter" class="col-sm-2 form-control-label">Filter</label>  
-      <div class="form-group row" FormArray="filter"> 
-        <label class="custom-control custom-checkbox"> 
-          <input type="checkbox" class="custom-control-input"> 
-          <span class="custom-control-indicator"></span> 
-          <span class="custom-control-description">gluten-free</span> 
-        </label>  
-        <label class="custom-control custom-checkbox"> 
-          <input type="checkbox" class="custom-control-input"> 
-          <span class="custom-control-indicator"></span> 
-          <span class="custom-control-description">vegetarian</span> 
-        </label> 
-        <label class="custom-control custom-checkbox"> 
-            <input type="checkbox" class="custom-control-input">               
-            <span class="custom-control-indicator"></span> 
-            <span class="custom-control-description">vegan</span> 
-        </label> 
-            <label class="custom-control custom-checkbox"> 
-                <input type="checkbox" class="custom-control-input"> 
-                <span class="custom-control-indicator"></span> 
-                <span class="custom-control-description">pescatarian</span> 
-              </label> 
-              <label class="custom-control custom-checkbox"> 
-                  <input type="checkbox" class="custom-control-input"> 
-                  <span class="custom-control-indicator"></span> 
-                  <span class="custom-control-description">lactose-free</span> 
-                </label> 
+      <label class="col-sm-2 form-control-label">Filter</label> 
+      <div formArrayName="filters">
+      <div *ngFor="let filter of form?.controls['filters'].controls; let i=index">
+        <div class="form-check form-group row"> 
+          <label class="form-check-label">
+            <input type="checkbox" [formControl]="filter" class="form-check-input" value=""> 
+          {{filters[i].name}}
+        </label>
+        </div>
+      </div>
       </div>
     </div>
     
-  
 
-
-  
     <div class="form-group row">
         <label for="image" class="col-sm-2 form-control-label">Image</label>
                 <input>
@@ -67,7 +47,7 @@
       </div>
       <div class="form-group row text-center">
           <div class="text-center">
-           <button class="btn btn-success" (click)="onAdd()">Add</button>
+           <button class="btn btn-success" (click)="onAdd()"> Add </button>
       </div>
     </div>
     </form>

@@ -1,4 +1,5 @@
 .fixed-top {
+    box-sizing: border-box;
     margin: auto;
     padding: 0; 
      

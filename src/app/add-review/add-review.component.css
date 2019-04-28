@@ -12,4 +12,6 @@
     box-sizing: border-box;
 }
 
-input[type="checkbox"] {-webkit-appearance: checkbox;}
+.checkbox {
+margin: 3rem, 0;
+}

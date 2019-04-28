@@ -1,13 +1,16 @@
 body {
+    box-sizing: border-box;
     background-color: #e9ecef;
 }
 
 .searchbar {
-    box-sizing: border-box;
-    margin: 10rem;
     position: absolute;
     top: 70%;
-    padding: 20rem;
+    left: 35%;
+    padding: 5rem;
+    width: 50%;
+    max-width: 60%;
+    padding: 5rem;
     width: 100%;
     
 }

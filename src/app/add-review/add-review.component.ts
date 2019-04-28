@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AddFoodItemService } from './services/add-food-item.service';
 
 @Component({
@@ -9,25 +9,48 @@ import { AddFoodItemService } from './services/add-food-item.service';
 })
 
 export class AddReviewComponent implements OnInit {
-  form = new FormGroup ({
-    itemName: new FormControl('', Validators.required),
-    restaurantName: new FormControl('', Validators.required),
-    // filter: new FormGroup()
-  });
+  form: FormGroup;
+  filters = [
+    {name: 'gluten-free', selected: false, id: 1},
+    {name: 'vegetarian', selected: false, id: 2},
+    {name: 'vegan', selected: false, id: 3},
+    {name: 'pescatarian', selected: false, id: 4},
+    {name: 'lactose-free', selected: false, id: 5}
+  ];
+
 
 
   constructor(
     private service: AddFoodItemService,
-  ) { }
+    private fb: FormBuilder
+    ) {
+  }
 
   ngOnInit() {
+    this.form = this.fb.group ({
+      itemName: ['', Validators.required],
+      restaurantName: ['', Validators.required],
+      filters: this.addCheckboxes()
+    });
+    console.log(this.form);
+  }
 
+ addCheckboxes() {
+    const arr = this.filters.map(filter => {
+      console.log(this.filters);
+      return this.fb.control(filter.selected);
+    });
+    return this.fb.array(arr);
+  }
+
+  addFilters(selected: boolean[]) {
+    return this.filters.filter((filter, index) => selected[index]
+    ).map(filter => filter.name);
   }
 
   onAdd() {
-   this.service.addFoodItems(this.form.value);
-   console.log(this.form.value);
-
+    console.log(this.form.value);
+    const foodItem = this.form.value;
+    this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
   }
 }
-
