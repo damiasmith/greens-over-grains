@@ -6,6 +6,6 @@ export interface FoodItem {
     itemName: string;
     restaurantName: string;
     filters: Array<string>;
-    rating?: number;
+    rating: string;
     image?: any;
   }

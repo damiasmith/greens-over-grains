@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RatingModule } from 'ng-starrating';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -40,7 +42,9 @@ import { AddFoodItemService } from './add-review/services/add-food-item.service'
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RatingModule,
+    AngularFontAwesomeModule
   ],
   providers: [AddFoodItemService],
   bootstrap: [AppComponent]

@@ -7,12 +7,70 @@ import { of } from 'rxjs';
 })
 
 export class AddFoodItemService {
-  private meals: FoodItem[] = [{
-    itemName: 'Spicy Tofu Wrap',
-    restaurantName: 'Lona\'s Little Eats',
-    filters: ['gluten-free', 'vegetarian'],
-    rating: 4,
-  }];
+  private meals: FoodItem[] = [
+    {
+      itemName: 'Spicy Tofu Wrap with Spicy Eggplant',
+      restaurantName: 'Lona\'s LiL Eats',
+      filters: ['gluten-free, vegetarian'],
+      rating: '4'
+    },
+    {
+      itemName: 'Vegetarian Combo with Gluten-Free Injera',
+      restaurantName: 'Meskerem',
+      filters: ['gluten-free, vegetarian, vegan, lactose-free'],
+      rating: '5'
+    },
+    {
+      itemName: 'Tofu Xa Ot (chiles and lemongrass)',
+      restaurantName: 'Pho Grand',
+      filters: ['gluten-free, vegetarian, vegan, lactose-free'],
+      rating: '5'
+    },
+    {
+      itemName: 'Mudslinger with Gluten-Free Bread',
+      restaurantName: 'The Mudhouse',
+      filters: ['gluten-free, vegetarian, vegan, lactose-free'],
+      rating: '5'
+    },
+    {
+      itemName: 'Okra Masala with Gluten-Free Bread',
+      restaurantName: 'The Mudhouse',
+      filters: ['gluten-free, vegetarian, lactose-free'],
+      rating: '3'
+    },
+    {
+      itemName: 'The Goat with Gluten-Free Bread',
+      restaurantName: 'The Mudhouse',
+      filters: ['gluten-free, vegetarian'],
+      rating: '4'
+    },
+    {
+      itemName: 'Hash',
+      restaurantName: 'Rise Coffee House',
+      filters: ['gluten-free, vegetarian'],
+      rating: '4'
+    },
+    {
+      itemName: 'Tumeric and Ginger Rice Bowl',
+      restaurantName: 'Rise Coffee House',
+      filters: ['gluten-free, vegetarian'],
+      rating: '5'
+    },
+    {
+      itemName: 'Spicy Shrimp Tacos with Corn Tortillas',
+      restaurantName: 'La Vallesana',
+      filters: ['gluten-free, pescatarian'],
+      rating: '5'
+    },
+    {
+      itemName: 'Grilled Baja Fish Taco',
+      restaurantName: 'Mission Taco Joint',
+      filters: ['gluten-free, pescatarian'],
+      rating: '3'
+    }
+
+
+];
 
   private filters = [
     {name: 'gluten-free', selected: false, id: 1},

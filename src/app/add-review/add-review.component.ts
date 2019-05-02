@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AddFoodItemService } from './services/add-food-item.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
+
 
 @Component({
   selector: 'app-add-review',
@@ -18,8 +21,6 @@ export class AddReviewComponent implements OnInit {
     {name: 'lactose-free', selected: false, id: 5}
   ];
 
-
-
   constructor(
     private service: AddFoodItemService,
     private fb: FormBuilder
@@ -30,10 +31,10 @@ export class AddReviewComponent implements OnInit {
     this.form = this.fb.group ({
       itemName: ['', Validators.required],
       restaurantName: ['', Validators.required],
-      filters: this.addCheckboxes()
-    });
-    console.log(this.form);
-  }
+      filters: this.addCheckboxes(),
+      rating: ['', Validators.required],
+  });
+}
 
  addCheckboxes() {
     const arr = this.filters.map(filter => {
@@ -48,8 +49,9 @@ export class AddReviewComponent implements OnInit {
     ).map(filter => filter.name);
   }
 
+
   onAdd() {
-    console.log(this.form.value);
+    console.log(this.form.valid);
     const foodItem = this.form.value;
     this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
   }
