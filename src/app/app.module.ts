@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'ng-starrating';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RouterModule } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -38,6 +39,9 @@ import { AddFoodItemService } from './services/add-food-item.service';
     ReactiveFormsModule,
     RatingModule,
     AngularFontAwesomeModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCJN2u9YXbmnVjAKAAHKfyQPJDVS9fofyk'
+    }),
     RouterModule.forRoot([
       {
         path: '',

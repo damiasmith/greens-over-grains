@@ -7,6 +7,25 @@
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
           </form> 
         </nav>
-    </div>
-  </div>
+
+<agm-map 
+[latitude]="lat"
+[longitude]="lng"
+[zoom]="zoom"
+[disableDefaultUI]="false"
+[zoomControl]="false"
+(mapClick)="mapClicked($event)">
+
+  <agm-marker 
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)">
+  </agm-marker>
+</agm-map>
+</div>
+</div>
 </div>
