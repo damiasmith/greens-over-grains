@@ -12,7 +12,8 @@ export class AddFoodItemService {
       itemName: 'Spicy Tofu Wrap with Spicy Eggplant',
       restaurantName: 'Lona\'s LiL Eats',
       filters: ['gluten-free, vegetarian'],
-      rating: '4'
+      rating: '4',
+      image: 'spicy_tofu_wrap.jpg'
     },
     {
       itemName: 'Vegetarian Combo with Gluten-Free Injera',

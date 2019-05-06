@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AddFoodItemService } from './services/add-food-item.service';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AddFoodItemService } from '../services/add-food-item.service';
+
 
 
 
@@ -20,6 +20,7 @@ export class AddReviewComponent implements OnInit {
     {name: 'pescatarian', selected: false, id: 4},
     {name: 'lactose-free', selected: false, id: 5}
   ];
+
 
   constructor(
     private service: AddFoodItemService,
@@ -55,4 +56,5 @@ export class AddReviewComponent implements OnInit {
     const foodItem = this.form.value;
     this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
   }
+
 }

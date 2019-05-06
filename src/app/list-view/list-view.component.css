@@ -1,0 +1,37 @@
+
+.container{
+    margin: 2rem;
+
+}
+
+.searchbar {
+    position: relative;
+    text-align: center;
+    left: 30%;
+    padding: 3rem;
+    width: 70%;
+    max-width: 90%;
+    padding: 5rem;    
+}
+
+li { 
+    padding: 1rem;
+    white-space:nowrap;
+    font-size:100%;
+    line-height:1.2;
+    list-style: none;
+}
+
+span {
+    float:right;
+    width:1em;
+    padding:0.1em;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+}
+.checked, .checked ~ span {
+    color: deeppink !important;
+}

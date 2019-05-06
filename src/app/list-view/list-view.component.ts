@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AddFoodItemService } from '../../add-review/services/add-food-item.service';
+import { AddFoodItemService } from '../services/add-food-item.service';
+
 
 
 @Component({
@@ -7,10 +8,11 @@ import { AddFoodItemService } from '../../add-review/services/add-food-item.serv
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.css']
 })
+
+
 export class ListViewComponent implements OnInit {
 
   foodItems = [];
-
 
   constructor(private service: AddFoodItemService) { }
 
@@ -20,5 +22,8 @@ export class ListViewComponent implements OnInit {
       console.log(foodItems);
     });
   }
-
+  starRating(star) {
+    console.log(star);
+    return Array.from(Array(star).keys());
+  }
 }

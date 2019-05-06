@@ -1,3 +1,5 @@
+<div class="jumbotron">
+
 <div class="container"> 
     <div class="jumbotron jumbotron-fluid text-center"> 
       <div class="container"> 
@@ -56,22 +58,21 @@
     <div class="form-group row">
     <label class="col-sm-2 form-control-label">Rating</label> 
       <div class="form-check rating">
-        <label class="form-check-label" title="5 stars">5 stars
-          <div class="stars-outer">
-            <i class="fa fa-star-o" aria-hidden="true"></i>"
-            <div class="stars-inner"></div>
-          </div>
-          <input 
-          class="form-control form-check-input rating rating-loading"   
+        <label 
+          class="form-check-label" 
+          title="5 stars" 
+          [ngClass]="{checked: form.controls['rating'].value==5}">
+          <input
+            class="form-control form-check-input rating rating-loading"   
             formControlName="rating" 
             type="radio" 
-            name="rating" 
-            value="5">
+            value="5"> 
         </label>
-        <label class="form-check-label" title="4 stars">4 stars
-          <div class="stars-outer">
-            <div class="stars-inner"></div>
-          </div>
+
+        <label 
+          class="form-check-label" 
+          title="4 stars"
+          [ngClass]="{checked: form.controls['rating'].value==4}">>
           <input 
             class="form-control form-check-input rating rating-loading"  
             formControlName="rating" 
@@ -79,10 +80,11 @@
             name="rating" 
             value="4">
         </label>
-        <label class="form-check-label" title="3 stars">3 stars
-          <div class="stars-outer">
-            <div class="stars-inner"></div>
-          </div>
+
+        <label 
+          class="form-check-label" 
+          title="3 stars" 
+          [ngClass]="{checked: form.controls['rating'].value==3}">
           <input 
             class="form-control form-check-input rating rating-loading"  
             formControlName="rating" 
@@ -90,10 +92,11 @@
             name="rating" 
             value="3">
         </label>
-        <label class="form-check-label" title="2 stars">2 stars
-          <div class="stars-outer">
-            <div class="stars-inner"></div>
-          </div>
+
+        <label 
+          class="form-check-label" 
+          title="2 stars" 
+          [ngClass]="{checked: form.controls['rating'].value==2}">
           <input 
             class="form-control form-check-input rating rating-loading"  
             formControlName="rating" 
@@ -101,12 +104,13 @@
             name="rating" 
             value="2">
         </label>
-        <label class="form-check-label" title="1 star">1 star
-          <div class="stars-outer">
-            <div class="stars-inner"></div>
-          </div>
+
+        <label 
+          class="form-check-label" 
+          title="1 star" 
+          [ngClass]="{checked: form.controls['rating'].value==1}">
           <input 
-          class="rating rating-loading form-control form-check-input"  
+          class="form-control form-check-input rating rating-loading"  
             formControlName="rating" 
             type="radio"  
             name="rating"
@@ -115,20 +119,19 @@
       </div>
     </div>
   
-  
-
     <div class="form-group row">
-        <label for="image" class="col-sm-2 form-control-label">Image</label>
+      <label for="image" class="col-sm-2 form-control-label">Image</label>
                 <input>
               <button class="btn btn-outline-secondary">Select File</button>
-              <button class="btn btn-outline-secondary"></button>
-      </div>
-      <div class="form-group row text-center">
-          <div class="text-center">
-           <button class="btn btn-success" (click)="onAdd()"> Add </button>
+    </div>
+
+    <div class="form-group row text-center">
+      <div class="text-center">
+         <button class="btn btn-success" (click)="onAdd()"> Add </button>
       </div>
     </div>
-    </form>
+  </form>
+</div>
 </div>
 
        

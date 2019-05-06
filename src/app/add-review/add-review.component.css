@@ -14,28 +14,40 @@
 
 .checkbox {
 margin: 3rem, 0;
+display: none;
 }
 
-.stars-outer {
-    display: inline-block;
-    position: relative;
-    font-family: FontAwesome;
+.rating-loading{
+display: none;
+}
+
+.rating {
+  float:left;
+}
+
+
+.rating > label {
+    float:right;
+    width:1em;
+    padding:0.1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+}
+
+  .rating > label:before {
+    content: '★ ';
   }
-   
-  .stars-outer::before {
-    content: "\f006";
-  }
-   
-  .stars-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-  }
-   
-  .stars-inner::before {
-    content: "\f005";
-    color: #f8ce0b;
-  }
+
+.checked, .checked ~ label {
+    color: deeppink !important;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label {
+    color: greenyellow;
+    
+}

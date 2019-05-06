@@ -1,0 +1,9 @@
+.searchbar {
+    position: relative;
+    text-align: center;
+    left: 30%;
+    padding: 3rem;
+    width: 70%;
+    max-width: 90%;
+    padding: 5rem;    
+}
