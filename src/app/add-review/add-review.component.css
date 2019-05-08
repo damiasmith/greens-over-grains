@@ -1,4 +1,18 @@
-.display-3 {
+.jumbotron{
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  padding-top: 0;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+}
+
+.display-4 {
     color: white;
     text-shadow:
     -1px -1px 0 #000,
@@ -7,51 +21,54 @@
     1px 1px 0 #000; 
 }
 
-.jumbotron {
-    width: 100%;
-    box-sizing: border-box;
+.container {
+float: center;
+width: 75%;
+min-width: 60%;
+}
+
+.text {
+width: 45%
 }
 
 .checkbox {
-margin: 3rem, 0;
-display: none;
+  margin: 3rem, 0;
+  display: none;
 }
 
 .rating-loading{
-display: none;
+  display: none;
 }
 
 .rating {
   float:left;
 }
 
-
 .rating > label {
-    float:right;
-    width:1em;
-    padding:0.1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:200%;
-    line-height:1.2;
-    color:#ddd;
+  float:right;
+  width:1em;
+  padding:0.1em;
+  overflow:hidden;
+  white-space:nowrap;
+  font-size: 200%;
+  line-height:1.2;
+  color:#ddd;
 }
 
-  .rating > label:before {
-    content: '★ ';
-  }
+.rating > label:before {
+  content: '★ ';
+}
 
 .checked, .checked ~ label {
-    color: deeppink !important;
+  color: deeppink !important;
 }
 
 .rating > label:hover,
 .rating > label:hover ~ label {
-    color: greenyellow;
-    
+  color: lightpink;
 }
 
 .add {
-  text-align: center;
+  float: right;
+  width: 50%;
 }

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'ng-starrating';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 
@@ -18,6 +17,8 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { MapViewComponent } from './map-view/map-view.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddFoodItemService } from './services/add-food-item.service';
+import { SearchComponent } from './search/search.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 
 @NgModule({
@@ -31,33 +32,48 @@ import { AddFoodItemService } from './services/add-food-item.service';
     FoodItemDetailsComponent,
     RestaurantDetailsComponent,
     MapViewComponent,
-    SignUpComponent
+    SignUpComponent,
+    SearchComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RatingModule,
-    AngularFontAwesomeModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCJN2u9YXbmnVjAKAAHKfyQPJDVS9fofyk'
     }),
     RouterModule.forRoot([
       {
+        path: 'search/:id',
+        component:
+        SearchComponent
+      },
+      {
+        path: 'restaurant-details/:id',
+        component:
+        RestaurantDetailsComponent
+      },
+      {
         path: '',
         component:
-        HomeComponent },
+        HomeComponent
+      },
       {
         path: 'add-review',
         component:
-        AddReviewComponent },
+        AddReviewComponent
+      },
       {
         path: 'list-view',
         component:
-        ListViewComponent },
+        ListViewComponent
+       },
       {
         path: 'map-view',
-        component: MapViewComponent },
+        component: MapViewComponent
+       },
     ])
   ],
   providers: [AddFoodItemService],
