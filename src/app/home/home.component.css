@@ -7,7 +7,7 @@
     min-height: 40rem; 
     height: auto;
     max-height: 100rem; 
-    background-image: url(/assets/leaf-background.jpg);
+    background-image: url(https://raw.githubusercontent.com/damiasmith/greens-over-grains/stackblitz/src/assets/leaf-background.jpg);
     background-attachment: scroll;
     background-position: center;
     background-repeat: no-repeat;

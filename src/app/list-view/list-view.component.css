@@ -10,7 +10,7 @@
   }
 
   .jumbotron::before {
-    background-image: url(/assets/leaf-background.jpg);
+    background-image: url(https://raw.githubusercontent.com/damiasmith/greens-over-grains/stackblitz/src/assets/leaf-background.jpg);
     background-size: cover;
     content: "";
     display: block;
