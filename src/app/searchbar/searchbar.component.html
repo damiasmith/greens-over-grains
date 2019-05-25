@@ -1,3 +1,23 @@
-<p>
-  searchbar works!
-</p>
+<div class="container">
+  <div class="d-flex flex-row">
+    <div class="d-flex justify-content-left">
+        <nav class="navbar navbar-light bg-transparent searchbar"> 
+          <div class="row">
+              <form class="form-inline"> 
+                <input #search id="search" 
+                  name="search" 
+                  class="form-control mr-sm-10" 
+                  type="text" 
+                  placeholder="Search">
+                <button (click)="onSubmit(search.value);" 
+                  class="btn btn-outline-success my-2 my-sm-0" 
+                  type="submit" class="icon"><i class="glyphicon glyphicon-search"></i> 
+              </button>
+            </form> 
+          </div>
+      </nav>      
+    </div> 
+  </div> 
+</div>  
+    
+

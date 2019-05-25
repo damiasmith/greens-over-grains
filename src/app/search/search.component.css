@@ -1,0 +1,7 @@
+li { 
+    padding: 2rem;
+    white-space:nowrap;
+    font-size:100%;
+    line-height:1.5;
+    list-style: none;
+}

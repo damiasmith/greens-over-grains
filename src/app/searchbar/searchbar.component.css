@@ -1,0 +1,17 @@
+.jumbotron {
+    
+    padding-bottom: 2rem;
+}
+
+.container {
+    background: transparent;
+}
+
+.search {
+    margin: auto;
+    width: 100%;
+}
+
+.form-inline {
+    font-family: Arial, Helvetica, sans-serif;
+  }

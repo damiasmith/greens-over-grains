@@ -71,4 +71,8 @@ export class RestaurantInfoService {
     return of(this.restaurantsArray);
   }
 
+  getRestaurant(id: number) {
+    return of(this.restaurantsArray.find(restaurant => restaurant.id === id));
+  }
+
 }

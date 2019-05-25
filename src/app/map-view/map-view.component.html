@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <div class="jumbotron jumbotron-fluid text-center header"> 
     <div class="container"> 
-      <h1 class="display-4">Map of Restaurants</h1> 
+      <h1 class="display-4">Restaurants Map</h1> 
     </div> 
   </div>
   <div class="card-group"> 
@@ -9,21 +9,11 @@
       <div class="card-block">  
         <div class="sidenav">
             <div class="row"> 
-                <div *ngFor="let filter of checkboxes?.controls['filters'].controls; let i=index">
-                  <div class="row"> 
-                    <label class="form-check-label">
-                      <input 
-                        type="checkbox"
-                        class="form-check-input" 
-                        value=""> 
-                        {{filters[i].name}}
-                    </label>
-                  </div>
-                </div>
-              </div>
+             <app-searchbar></app-searchbar>   
             </div>
-        </div>
+          </div>
       </div>
+    </div>
   
     <div class="card-2"> 
       <div class="card-block">
@@ -49,14 +39,27 @@
                 [id]="m.id"
                 [latitude]="m.lat"
                 [longitude]="m.lng"
-                [label]="m.label">
+                [label]=""
+                (mouseOver)="onMouseOver(infoWindow, $event)" 
+                (click)="onClick(infoWindow, $event)">
+       
+                <agm-info-window [disableAutoPan]="false" #infoWindow>
+                    <div> <a [routerLink]="['/restaurant-details', m.id]">
+                        {{m.label}}
+                      </a>
+                    </div>
+                </agm-info-window>
+        
               </agm-marker>
             </agm-map>
             <ul>
-              <ng-container>
-                <li *ngFor="let restaurant of restaurantsInfo"> {{restaurant.restaurantName}} <br> {{restaurant.address}} <br> {{restaurant.phoneNumber}} <br> {{restaurant.hours}} <br> {{restaurant.website}}
-                </li>
-              </ng-container>
+                <li *ngFor="let restaurant of restaurantsInfo">
+                <a [routerLink]="['/restaurant-details', restaurant.id]">
+                {{restaurant.restaurantName}} 
+                </a> 
+                <br>
+                {{restaurant.address}} <br> {{restaurant.phoneNumber}} <br> {{restaurant.hours}} <br> {{restaurant.website}}
+              </li>
             </ul>
           </div>
         </div>

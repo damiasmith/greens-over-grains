@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { splitClasses } from '@angular/compiler';
 import { FoodItemDetailsComponent } from '../food-item-details/food-item-details.component';
 
 @Component({

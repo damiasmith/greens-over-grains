@@ -4,6 +4,7 @@ import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Restaurant } from '../services/restaurant.interface';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-map-view',
@@ -12,7 +13,6 @@ import { Restaurant } from '../services/restaurant.interface';
 })
 
 export class MapViewComponent implements OnInit {
-  checkboxes: FormGroup;
   filters = [
     'gluten-free',
     'vegetarian',
@@ -24,6 +24,9 @@ export class MapViewComponent implements OnInit {
   activeFilters: Set<string> = new Set<string>();
 
   restaurantsInfo: Restaurant[] = [];
+
+  router: Router;
+
   clicked = [];
 
   zoom = 12;
@@ -97,11 +100,24 @@ export class MapViewComponent implements OnInit {
     // this.restaurantsInfo.filter(restaurant => this.activeFilters.find(filter => filter===restaurant.)
   }
 
+  onMouseOver(infoWindow, $event: MouseEvent) {
+    infoWindow.open();
+    infoWindow.close();
+  }
+
+  /*onMouseOut(infoWindow, $event: MouseEvent) {
+    infoWindow.close();
+  }*/
+
+  onClick(infoWindow, $event: MouseEvent) {
+      infoWindow.open();
+  }
+
   clickedMarker(id: number, index: number) {
-  console.log (id);
+    console.log (id);
+  }
   /*const clickedRestaurant = this.restaurantsInfo.filter((id) => id === this.restaurantsInfo.id)
   console.log (clickedRestaurant);*/
-  }
 
 }
 interface Marker {

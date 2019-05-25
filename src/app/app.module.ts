@@ -42,11 +42,11 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     ReactiveFormsModule,
     RatingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCJN2u9YXbmnVjAKAAHKfyQPJDVS9fofyk'
+      apiKey: ''
     }),
     RouterModule.forRoot([
       {
-        path: 'search/:id',
+        path: 'search',
         component:
         SearchComponent
       },
