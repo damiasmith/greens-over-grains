@@ -9,16 +9,18 @@
             <div class="card-block">  
                 <div class="sidenav">
                     <div class="row"> 
-                        <div class="col-sm-10"> 
+                        <div class="col-sm-12"> 
                         <app-searchbar></app-searchbar>   
-                            <div *ngFor="let filter of filters" class="filter">
-                                <label class="form-check-label">
-                                    <input (click) = "onFilter(filter)"
+                            <div class="filter">   
+                                <div *ngFor="let filter of filters">
+                                    <label class="form-check-label">
+                                        <input (click) = "onFilter(filter)"
                                                 type="checkbox" 
                                                 class="form-check-input" 
                                                 value=""> 
                                                 {{ filter }}
-                                </label>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +34,9 @@
                         <ul>
                             <li *ngFor="let item of displayFoodItems"> 
                                 {{item.itemName}} <br> 
-                                {{item.restaurantName}} <br> 
+                                <a [routerLink]="['/restaurant-details', item.id]">
+                                    {{item.restaurantName}} 
+                                </a> <br> 
                                 {{item.filters}} <br>
                                 <span *ngFor="let i of [5, 4, 3, 2, 1]" 
                                 [ngClass]="{checked: item.rating==i}"> ★ {{i}}                                         </span>

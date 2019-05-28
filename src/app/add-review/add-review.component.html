@@ -1,147 +1,142 @@
 <div class="jumbotron">
-  <div class="container"> 
-    <div class="jumbotron jumbotron-fluid header"> 
+    <div class="jumbotron jumbotron-fluid text-center header"> 
       <div class="container"> 
         <h1 class="display-4">Add a Review</h1> 
       </div> 
     </div>
     <div class="card-group"> 
-        <div class="card-1"> 
-        </div> 
-    </div>
-
-    <div class="card-group"> 
+      <div class="card-1"> 
+      </div> 
         <div class="card-2"> 
-      <form [formGroup]="form">
-        <div class="container-form"> 
-          <div class="form-group row"> 
-            <label 
-              for="inputFoodItem"   
-              class="col-sm-2 form-control-label"
-              >Food Item</label> 
-            <div class="col-sm-10"> 
-              <input 
-                formControlName="itemName" 
-                type="text" 
-                class="form-control text" 
-                id="itemName" 
-                placeholder="Food Item"> 
-            </div> 
-          </div>
+          <form [formGroup]="form">
+            <div class="container-form"> 
+              <div class="form-group row"> 
+                <label 
+                  for="inputFoodItem"   
+                  class="col-sm-2 form-control-label"
+                  >Food Item</label> 
+                <div class="col-sm-10"> 
+                  <input 
+                    formControlName="itemName" 
+                    type="text" 
+                    class="form-control text" 
+                    id="itemName" 
+                    placeholder="Food Item"> 
+                </div> 
+              </div>
       
-          <div class="form-group row"> 
-            <label 
-              for="inputRestaurant"   
-              class="col-sm-2 form-control-label"
-              >Restaurant</label> 
-            <div class="col-sm-10"> 
-              <input formControlName="restaurantName" 
-                  type="text" 
-                  class="form-control text" 
-                  id="restaurant" 
-                  placeholder="Restaurant"> 
-            </div> 
-          </div> 
+              <div class="form-group row"> 
+                <label 
+                  for="inputRestaurant"   
+                  class="col-sm-2 form-control-label"
+                  >Restaurant</label> 
+                <div class="col-sm-10"> 
+                  <input formControlName="restaurantName" 
+                      type="text" 
+                      class="form-control text" 
+                      id="restaurant" 
+                      placeholder="Restaurant"> 
+                </div> 
+              </div> 
 
-          <div class="form-group row">
-            <label class="col-sm-2 form-control-label">Filter</label> 
-            <div formArrayName="filters">
-              <div *ngFor="let filter of form?.controls['filters'].controls; let i=index">
-                <div class="form-check form-group row"> 
-                  <label class="form-check-label">
+              <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Filter</label> 
+                <div formArrayName="filters">
+                  <div *ngFor="let filter of form?.controls['filters'].controls; let i=index">
+                    <div class="form-check form-group row"> 
+                      <label class="form-check-label">
+                        <input 
+                          type="checkbox" 
+                          [formControl]="filter" 
+                          class="form-check-input" 
+                          value=""> 
+                          {{filters[i].name}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group row">
+              <label class="col-sm-2 form-control-label">Rating</label> 
+                <div class="form-check rating">
+                  <label 
+                    class="form-check-label" 
+                    title="5 stars" 
+                    [ngClass]="{checked: form.controls['rating'].value==5}">
+                    <input
+                      class="form-control form-check-input rating rating-loading"   
+                      formControlName="rating" 
+                      type="radio" 
+                      value="5"> 
+                  </label>
+
+                  <label 
+                    class="form-check-label" 
+                    title="4 stars"
+                    [ngClass]="{checked: form.controls['rating'].value==4}">>
                     <input 
-                      type="checkbox" 
-                      [formControl]="filter" 
-                      class="form-check-input" 
-                      value=""> 
-                      {{filters[i].name}}
+                      class="form-control form-check-input rating rating-loading"  
+                      formControlName="rating" 
+                      type="radio"  
+                      name="rating" 
+                      value="4">
+                  </label>
+
+                  <label 
+                    class="form-check-label" 
+                    title="3 stars" 
+                    [ngClass]="{checked: form.controls['rating'].value==3}">
+                    <input 
+                      class="form-control form-check-input rating rating-loading"  
+                      formControlName="rating" 
+                      type="radio" 
+                      name="rating" 
+                      value="3">
+                  </label>
+
+                  <label 
+                    class="form-check-label" 
+                    title="2 stars" 
+                    [ngClass]="{checked: form.controls['rating'].value==2}">
+                    <input 
+                      class="form-control form-check-input rating rating-loading"  
+                      formControlName="rating" 
+                      type="radio"  
+                      name="rating" 
+                      value="2">
+                  </label>
+
+                  <label 
+                    class="form-check-label" 
+                    title="1 star" 
+                    [ngClass]="{checked: form.controls['rating'].value==1}">
+                    <input 
+                    class="form-control form-check-input rating rating-loading"  
+                      formControlName="rating" 
+                      type="radio"  
+                      name="rating"
+                      value="1">
                   </label>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <div class="form-group row">
-          <label class="col-sm-2 form-control-label">Rating</label> 
-            <div class="form-check rating">
-              <label 
-                class="form-check-label" 
-                title="5 stars" 
-                [ngClass]="{checked: form.controls['rating'].value==5}">
-                <input
-                  class="form-control form-check-input rating rating-loading"   
-                  formControlName="rating" 
-                  type="radio" 
-                  value="5"> 
-              </label>
-
-              <label 
-                class="form-check-label" 
-                title="4 stars"
-                [ngClass]="{checked: form.controls['rating'].value==4}">>
-                <input 
-                  class="form-control form-check-input rating rating-loading"  
-                  formControlName="rating" 
-                  type="radio"  
-                  name="rating" 
-                  value="4">
-              </label>
-
-              <label 
-                class="form-check-label" 
-                title="3 stars" 
-                [ngClass]="{checked: form.controls['rating'].value==3}">
-                <input 
-                  class="form-control form-check-input rating rating-loading"  
-                  formControlName="rating" 
-                  type="radio" 
-                  name="rating" 
-                  value="3">
-              </label>
-
-              <label 
-                class="form-check-label" 
-                title="2 stars" 
-                [ngClass]="{checked: form.controls['rating'].value==2}">
-                <input 
-                  class="form-control form-check-input rating rating-loading"  
-                  formControlName="rating" 
-                  type="radio"  
-                  name="rating" 
-                  value="2">
-              </label>
-
-              <label 
-                class="form-check-label" 
-                title="1 star" 
-                [ngClass]="{checked: form.controls['rating'].value==1}">
-                <input 
-                class="form-control form-check-input rating rating-loading"  
-                  formControlName="rating" 
-                  type="radio"  
-                  name="rating"
-                  value="1">
-              </label>
-            </div>
-          </div>
-        
-          <div class="form-group row">
-            <div >
-              <label for="image" class="col-sm-2 form-control-label">Image</label>
-                <input>
-                <button class="btn btn-outline-secondary">Select File</button>
-            </div>
-          </div> 
-            <div class="form-group row">
-              <div class="col-sm-2">
-                <button class="btn btn-success add" (click)="onAdd()">Add Item</button>
+            
+              <div class="form-group row">
+            
+                  <label for="image" class="col-sm-2 form-control-label">Image</label>
+                    <input>
+                    <button class="btn btn-outline-secondary">Select File</button>
+              </div> 
+              <div class="form-group row add">
+                <div class="col-sm-6 ">
+                  <button class="btn btn-success" (click)="onAdd()">Add Item</button>
+                </div>
               </div>
             </div>
-          </div>
-      </form>
+          </form>
+      
     </div>
   </div>
-</div>
 </div>
 
             
