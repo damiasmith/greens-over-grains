@@ -1,10 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Restaurant } from '../services/restaurant.interface';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map-view',
@@ -87,7 +86,8 @@ export class MapViewComponent implements OnInit {
 
   constructor(
     private restaurantInfoService: RestaurantInfoService,
-    private addFooditemService: AddFoodItemService) { }
+    private addFoodItemService: AddFoodItemService) {
+    }
 
   ngOnInit() {
     this.restaurantInfoService.getRestaurants()
@@ -96,16 +96,8 @@ export class MapViewComponent implements OnInit {
     });
   }
 
-  onFilter() {
-    // this.restaurantsInfo.filter(restaurant => this.activeFilters.find(filter => filter===restaurant.)
-  }
-
-  onMouseOver(infoWindow, $event: MouseEvent) {
+  /* onMouseOver(infoWindow, $event: MouseEvent) {
     infoWindow.open();
-    infoWindow.close();
-  }
-
-  /*onMouseOut(infoWindow, $event: MouseEvent) {
     infoWindow.close();
   }*/
 
@@ -116,10 +108,8 @@ export class MapViewComponent implements OnInit {
   clickedMarker(id: number, index: number) {
     console.log (id);
   }
-  /*const clickedRestaurant = this.restaurantsInfo.filter((id) => id === this.restaurantsInfo.id)
-  console.log (clickedRestaurant);*/
-
 }
+
 interface Marker {
   id: number;
   lat: number;

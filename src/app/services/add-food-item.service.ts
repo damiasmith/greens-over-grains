@@ -55,14 +55,14 @@ export class AddFoodItemService {
       id: 105,
       itemName: 'Hash',
       restaurantName: 'Rise Coffee House',
-      filters: ['gluten-free', 'vegetarian'],
+      filters: ['gluten-free', ' vegetarian'],
       rating: '4'
     },
     {
       id: 105,
       itemName: 'Tumeric and Ginger Rice Bowl',
       restaurantName: 'Rise Coffee House',
-      filters: ['gluten-free', 'vegetarian'],
+      filters: ['gluten-free' , 'vegetarian'],
       rating: '5'
     },
     {

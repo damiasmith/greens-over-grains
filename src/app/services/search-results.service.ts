@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { RestaurantInfoService } from './restaurant-info.service';
 import { AddFoodItemService } from './add-food-item.service';
 
@@ -22,17 +22,22 @@ export class SearchResultsService {
     let restaurants;
     let foodItems;
     const results = [];
-    this.restaurantInfoService.getRestaurants()
-    .subscribe(restaurantsInfo => { restaurants = restaurantsInfo;
-    });
-    this.addFooditemService.getFoodItems()
-    .subscribe( addFoodItems  => { foodItems = addFoodItems;
+    combineLatest (
+      this.restaurantInfoService.getRestaurants(),
+      this.addFooditemService.getFoodItems()
+    )
+    .subscribe(([restaurantsInfo, addFoodItems]) => {
+      restaurants = restaurantsInfo;
+      foodItems = addFoodItems;
+      return {restaurants, foodItems};
     });
 
     for (let i = 0; i < foodItems.length; i++) {
       if (foodItems[i].itemName.toLowerCase() === value.toLowerCase()) {
         results.push( foodItems[i] );
       } else if ( foodItems[i].filters.find(filter => filter.toLowerCase() === value.toLowerCase())) {
+        results.push( foodItems[i] );
+      } else if ( foodItems[i].restaurantName.toLowerCase() === value.toLowerCase()) {
         results.push( foodItems[i] );
       }
     }

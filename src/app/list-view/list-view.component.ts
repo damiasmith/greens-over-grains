@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { FoodItemDetailsComponent } from '../food-item-details/food-item-details.component';
 
 @Component({
   selector: 'app-list-view',
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.css']
 })
-
 
 export class ListViewComponent implements OnInit {
 
@@ -30,13 +27,13 @@ export class ListViewComponent implements OnInit {
     private service: AddFoodItemService,
     ) { }
 
-
   ngOnInit() {
     this.service.getFoodItems()
     .subscribe(foodItems => { this.foodItems = foodItems as any,
       this.displayFoodItems = this.foodItems;
     });
   }
+
   starRating(star) {
     console.log(star);
     return Array.from(Array(star).keys());

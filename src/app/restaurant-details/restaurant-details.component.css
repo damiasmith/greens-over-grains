@@ -39,49 +39,37 @@
 }
 
 .card-1 { 
-    max-width: 25%;
-    width: 20%;
-    padding-top: 8rem;
-    padding-left: 2rem; 
+    width: 35%;
+    padding-top: 2rem;
+    padding-left: 0;
     padding-right: 0;
-   
     
 }
 
 .sidenav {
     position: fixed;
-    padding: 2rem;
     white-space: nowrap;
     font-size: 100%;
     line-height: 2;
 }
 
-.card-block {
-    padding: 0;
-    margin: 0;
+.filter {
+    padding-left: 4rem;
+    padding-top: 2rem;
+    line-height: 2.4;
+    
 }
 
 .card-2 {
-    width: 80%;
+    width: 65%;
 }
-
-.searchbar {
-    position: relative;
-    text-align: center;
-    left: 20%;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    width: 100%;
-    max-width: 100%;
-}  
+ 
 
 li { 
     padding: 2rem;
-    white-space:nowrap;
-    font-size:100%;
-    line-height:1.5;
+    white-space: wrap;
+    font-size: 100%;
+    line-height: 1.5;
     list-style: none;
 }
 

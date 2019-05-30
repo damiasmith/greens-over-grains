@@ -1,5 +1,4 @@
 .jumbotron {
-    
     padding-bottom: 2rem;
 }
 
@@ -15,3 +14,10 @@
 .form-inline {
     font-family: Arial, Helvetica, sans-serif;
   }
+
+.center {
+    margin: 0 auto;
+    width: 45%;
+}
+
+  
