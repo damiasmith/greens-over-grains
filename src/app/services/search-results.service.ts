@@ -37,6 +37,8 @@ export class SearchResultsService {
         results.push( foodItems[i] );
       } else if ( foodItems[i].filters.find(filter => filter.toLowerCase() === value.toLowerCase())) {
         results.push( foodItems[i] );
+      } else if ( foodItems[i].restaurantName.toLowerCase() === value.toLowerCase()) {
+        results.push( foodItems[i] );
       }
     }
 
