@@ -53,3 +53,28 @@
 .grains {
     align-self: flex-end;
 }
+
+@media(max-width: 660px) {
+    .searchbar {
+        text-align: right;
+        position: relative;
+        padding-top: 6.5rem;
+        min-width: 50%;
+        max-width: 70%;
+        margin: auto;
+        width: 100%;
+    } 
+    .container-text {
+        background-color: transparent;
+        width: 50%;
+        max-width: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        padding-top: 1rem;
+    }
+    .display-3 { 
+        font-size: 4rem;
+    }
+}
