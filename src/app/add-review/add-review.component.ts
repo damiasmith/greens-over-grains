@@ -17,6 +17,7 @@ export class AddReviewComponent implements OnInit {
     {name: 'pescatarian', selected: false, id: 4},
     {name: 'lactose-free', selected: false, id: 5}
   ];
+  submitted = false;
 
   constructor(
     private service: AddFoodItemService,
@@ -29,7 +30,7 @@ export class AddReviewComponent implements OnInit {
       itemName: ['', Validators.required],
       restaurantName: ['', Validators.required],
       filters: this.addCheckboxes(),
-      rating: ['', Validators.required],
+      rating: ['', Validators.required]
     });
   }
 
@@ -46,11 +47,17 @@ export class AddReviewComponent implements OnInit {
     ).map(filter => filter.name);
   }
 
+  get f() { return this.form.controls; }
 
   onAdd() {
-    console.log(this.form.valid);
-    const foodItem = this.form.value;
-    this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    if (this.form.valid) {
+      const foodItem = this.form.value;
+      this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
+      this.form.reset();
+    }
   }
-
 }

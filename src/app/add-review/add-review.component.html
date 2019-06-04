@@ -1,46 +1,56 @@
 <div class="jumbotron background">
-    <div class="jumbotron jumbotron-fluid text-center header"> 
-      <div class="container"> 
+  <div class="jumbotron jumbotron-fluid text-center header"> 
+    <div class="container"> 
         <h1 class="display-4">Add a Review</h1> 
-      </div> 
-    </div>
-    <div class="card-group"> 
-      <div class="card-1"> 
-      </div> 
-        <div class="card-2"> 
-          <form [formGroup]="form">
+    </div> 
+  </div>
+  <div class="card-group"> 
+    <div class="card-1"> 
+    </div> 
+    <div class="card-2"> 
+          <form [formGroup]="form" (ngSubmit)="onAdd()">
             <div class="container-form"> 
-              <div class="form-group row"> 
+              <div class="form-group row">
                 <label 
                   for="inputFoodItem"   
-                  class="col-sm-2 form-control-label"
+                  class="col-sm-4 form-control-label"
                   >Food Item</label> 
-                <div class="col-sm-10"> 
+                <div class="col-sm-12">
                   <input 
                     formControlName="itemName" 
                     type="text" 
                     class="form-control text" 
                     id="itemName" 
-                    placeholder="Food Item"> 
-                </div> 
+                    placeholder="Food Item"
+                    [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }">
+                    <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
+                        <div *ngIf="f.itemName.errors.required">Food Item is required</div>
+                    </div>
+                </div>
               </div>
       
               <div class="form-group row"> 
                 <label 
                   for="inputRestaurant"   
-                  class="col-sm-2 form-control-label"
+                  class="col-sm-4 form-control-label"
                   >Restaurant</label> 
-                <div class="col-sm-10"> 
-                  <input formControlName="restaurantName" 
+                <div class="col-sm-12"> 
+                  <input 
+                      formControlName="restaurantName" 
                       type="text" 
                       class="form-control text" 
                       id="restaurant" 
-                      placeholder="Restaurant"> 
+                      placeholder="Restaurant"
+                      [ngClass]="{ 'is-invalid': submitted && f.restaurantName.errors }">
+                      <div *ngIf="submitted && f.restaurantName.errors" class="invalid-feedback">
+                          <div *ngIf="f.restaurantName.errors.required">Restaurant is required</div>
+                      </div>
                 </div> 
               </div> 
 
               <div class="form-group row">
-                <label class="col-sm-2 form-control-label">Filter</label> 
+                <label 
+                  class="col-sm-4 form-control-label">Filter</label> 
                 <div formArrayName="filters">
                   <div *ngFor="let filter of form?.controls['filters'].controls; let i=index">
                     <div class="form-check form-group row"> 
@@ -49,7 +59,7 @@
                           type="checkbox" 
                           [formControl]="filter" 
                           class="form-check-input" 
-                          value=""> 
+                          value="">
                           {{filters[i].name}}
                       </label>
                     </div>
@@ -58,7 +68,7 @@
               </div>
               
               <div class="form-group row">
-              <label class="col-sm-2 form-control-label">Rating</label> 
+              <label class="col-sm-4 form-control-label">Rating</label> 
                 <div class="form-check rating">
                   <label 
                     class="form-check-label" 
@@ -120,20 +130,17 @@
                   </label>
                 </div>
               </div>
-            
-              <div class="form-group row">
-            
-                  <label for="image" class="col-sm-2 form-control-label">Image</label>
-                    <input>
-                    <button class="btn btn-outline-secondary">Select File</button>
-              </div> 
+
               <div class="form-group row add">
-                <div class="col-sm-6 ">
+                <div class="col-xs-6 ">
                   <button class="btn btn-success" (click)="onAdd()">Add Item</button>
                 </div>
               </div>
             </div>
           </form>
+          <div>
+
+          </div>
       
     </div>
   </div>

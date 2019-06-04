@@ -100,3 +100,49 @@
   width: 50%;
 }
 
+.ng-valid.ng-dirty:not(form) {
+  border: solid 2px lightgreen;
+}
+
+.ng-invalid.ng-dirty:not(form), .ng-invalid:not(form).submitted {
+  border: solid 2px lightcoral;
+}
+
+@media(max-width: 660px) {
+  .header {
+  padding-top: 6rem;
+  text-align: right;
+  }
+
+  h1 {
+    padding-right: 1rem;
+    font-size: 2.8rem;
+    text-align: right;
+  }
+
+  .cardgroup{
+    display: flex;
+    align-content: flex-end;
+  }
+
+  .card-1 {
+    width: 20%;
+  }
+
+  .card-2 {
+    width: 80%;
+    
+  }
+
+  form {
+    display: flex;
+    align-content: flex-end;
+  }
+
+  .container-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin:0, auto;
+  }
+}

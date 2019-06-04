@@ -71,3 +71,32 @@ li {
     line-height:1.5;
     list-style: none;
 }
+
+@media(max-width: 660px) {
+
+    .header {
+        padding-top: 6rem;
+        text-align: right;
+    }
+  
+    h1 {
+      padding-right: 1rem;
+      font-size: 2.8rem;
+      text-align: right;
+    }
+
+    .side {
+        position: relative;
+        width: 100%;
+    }
+
+    .card-1 {
+        position: relative;
+        width: 100%;
+    }
+
+    .card-2 {
+        position: relative;
+        width: 100%; 
+    }
+}

@@ -91,3 +91,46 @@ span {
 .checked, .checked ~ span {
     color: deeppink !important;
 }
+
+@media(max-width: 660px) {
+
+    .header {
+        padding-top: 6rem;
+        text-align: right;
+    }
+  
+    h1 {
+      padding-right: 1rem;
+      font-size: 2.8rem;
+      text-align: right;
+    }
+
+    .sidenav {
+        position: relative;
+    }
+
+    .card-1 {
+        position: relative;
+        width: 100%;
+    }
+
+    .searchbar {
+        text-align: right;
+        position: relative;
+        min-width: 50%;
+        max-width: 80%;
+        margin: auto;
+        width: 100%;
+    } 
+
+    .card-2 {
+        position: relative;
+        width: 100%; 
+    }
+
+    li { 
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 2rem;
+    }
+}

@@ -61,7 +61,7 @@
         position: relative;
         padding-top: 6.5rem;
         min-width: 50%;
-        max-width: 70%;
+        max-width: 80%;
         margin: auto;
         width: 100%;
     } 
@@ -76,6 +76,6 @@
         padding-top: 1rem;
     }
     .display-3 { 
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 }
