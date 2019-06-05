@@ -46,8 +46,7 @@
     width: 35%;
     padding-top: 2rem;
     padding-left: 1rem;
-    padding-right: 0;
-    
+
 }
 
 .sidenav {
@@ -55,11 +54,12 @@
     white-space: nowrap;
     font-size: 100%;
     line-height: 2;
+    
 }
 
 .filter {
-    padding-left: 4rem;
     padding-top: 2rem;
+    padding-left: 4rem;
     line-height: 2.4;
     
 }

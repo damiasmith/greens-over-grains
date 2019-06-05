@@ -53,11 +53,12 @@ export class AddReviewComponent implements OnInit {
     this.submitted = true;
     if (this.form.invalid) {
       return;
-    }
-    if (this.form.valid) {
+    } else if (this.form.valid) {
       const foodItem = this.form.value;
       this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
       this.form.reset();
+      this.submitted = false;
+
     }
   }
 }

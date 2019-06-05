@@ -21,7 +21,7 @@
     min-width: 40%;
     max-width: 100%;
     margin: auto;
-    width: 100%;
+    width: 60%;
 }
 
 
@@ -56,12 +56,13 @@
 }
 
 @media(max-width: 660px) {
+
     .searchbar {
         text-align: right;
         position: relative;
         padding-top: 6.5rem;
-        min-width: 50%;
-        max-width: 80%;
+        min-width: 40%;
+        max-width: 70%;
         margin: auto;
         width: 100%;
     } 

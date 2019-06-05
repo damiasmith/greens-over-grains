@@ -45,6 +45,7 @@
 
 .text {
   width: 50%;
+  text-align: center;
 }
 
 .card-1 {
@@ -72,7 +73,7 @@
 }
 
 .rating > label {
-  float:right;
+  float: right;
   width:1em;
   padding:0.1em;
   overflow:hidden;
@@ -120,24 +121,26 @@
     text-align: right;
   }
 
-  .cardgroup{
-    display: flex;
-    align-content: flex-end;
+  .cardgroup {
+   text-align: right;
   }
 
   .card-1 {
     width: 20%;
+    text-align: right;
+  }
+
+  input {
+    direction: rtl;
   }
 
   .card-2 {
     width: 80%;
-    
   }
 
-  form {
-    display: flex;
-    align-content: flex-end;
-  }
+   .name {
+    text-align: right;
+   }
 
   .container-form {
     display: flex;

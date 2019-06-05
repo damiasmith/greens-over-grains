@@ -25,8 +25,7 @@
                 [id]="m.id"
                 [latitude]="m.lat"
                 [longitude]="m.lng"
-                [label]=""
-                (mouseOver)="onMouseOver(infoWindow, $event)" 
+                [label]="" 
                 (click)="onClick(infoWindow, $event)">
        
                 <agm-info-window [disableAutoPan]="false" #infoWindow>

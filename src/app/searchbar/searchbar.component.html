@@ -3,10 +3,11 @@
         <nav class="navbar navbar-light bg-transparent searchbar"> 
           <div class="row">
               <form class="form-inline" [formGroup]="form" (ngSubmit)="onSubmit()">
-                <input #search id="search" 
+                <input #search 
+                  id="search" 
                   formControlName="search" 
                   name="search" 
-                  class="form-control mr-sm-8" 
+                  class="form-control mr-sm-12" 
                   type="text" 
                   placeholder="Search">
                 <button (click)="onSubmit(search.value);" 

@@ -29,8 +29,8 @@ export class MapViewComponent implements OnInit {
   clicked = [];
 
   zoom = 12;
-  lat = 38.626804;
-  lng = -90.199410;
+  lat = 38.620771;
+  lng = -90.224258;
 
   markers: Marker[] = [
     {
