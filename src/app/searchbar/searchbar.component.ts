@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultsService } from '..//services/search-results.service';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder} from '@angular/forms';
+
 
 
 @Component ({
@@ -23,13 +24,12 @@ export class SearchbarComponent implements OnInit {
     this.form = this.fb.group ({
     search: ['', Validators.required],
   });
-}
+  }
 
   onSubmit(value: string) {
     if (this.form.valid) {
       this.searchResultsService.search(value);
       this.router.navigate(['/search']);
-
     }
   }
 }

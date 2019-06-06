@@ -69,11 +69,11 @@ li {
     }
 
     .right {
-        text-align: left;
+        text-align: right;
     }
 
     .left {
-        flex-direction: row-reverse;
+        flex-direction: row;
         align-items: flex-end;
     }
 

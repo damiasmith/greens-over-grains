@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AddFoodItemService } from '../services/add-food-item.service';
+import { FoodItem } from '../services/food-item.interface';
 
 @Component({
   selector: 'app-add-review',
@@ -18,6 +19,7 @@ export class AddReviewComponent implements OnInit {
     {name: 'lactose-free', selected: false, id: 5}
   ];
   submitted = false;
+
 
   constructor(
     private service: AddFoodItemService,
@@ -57,8 +59,7 @@ export class AddReviewComponent implements OnInit {
       const foodItem = this.form.value;
       this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
       this.form.reset();
-      this.submitted = false;
-
     }
   }
 }
+

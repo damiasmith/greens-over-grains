@@ -58,13 +58,11 @@
 @media(max-width: 660px) {
 
     .searchbar {
-        text-align: right;
         position: relative;
-        padding-top: 6.5rem;
-        min-width: 40%;
-        max-width: 70%;
-        margin: auto;
-        width: 100%;
+        padding-top: 7rem;
+        
+        float: left;
+        width: 80%;
     } 
     .container-text {
         background-color: transparent;
@@ -74,9 +72,10 @@
         flex-direction: column;
         align-items: center;
         margin: 0 auto;
-        padding-top: 1rem;
+        padding-top: 0;
     }
     .display-3 { 
         font-size: 3.5rem;
     }
 }
+

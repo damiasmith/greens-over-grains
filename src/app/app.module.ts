@@ -4,6 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'ng-starrating';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -40,9 +44,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     RatingModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
     AgmCoreModule.forRoot({
       apiKey: ''
     }),

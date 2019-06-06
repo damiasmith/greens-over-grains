@@ -55,7 +55,7 @@ export class AddFoodItemService {
       id: 105,
       itemName: 'Hash',
       restaurantName: 'Rise Coffee House',
-      filters: ['gluten-free', ' vegetarian'],
+      filters: ['gluten-free', 'vegetarian'],
       rating: '4'
     },
     {
@@ -92,7 +92,7 @@ export class AddFoodItemService {
   ];
 
    getFoodItems() {
-     return of(this.meals);
+    return of(this.meals);
    }
 
    addFoodItems(item: FoodItem) {

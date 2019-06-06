@@ -5,9 +5,9 @@
     height: auto;
     box-sizing: border-box;
     z-index: -2;
-  }
+}
 
-  .jumbotron::before {
+.jumbotron::before {
     background-image: url(https://raw.githubusercontent.com/damiasmith/greens-over-grains/stackblitz/src/assets/leaf-background.jpg);
     background-size: cover;
     background-position: center;
@@ -24,7 +24,7 @@
     left: 0;
     z-index: 0;
     opacity: 0.1;
-    }
+}
 
 .header {
     padding: 0;
@@ -92,14 +92,14 @@ span {
 @media(max-width: 660px) {
 
     .header {
-        padding-top: 6rem;
-        text-align: right;
+        width: 70%;
+        padding-top: 0;
+        padding-left: 2rem;
     }
   
     h1 {
       padding-right: 1rem;
       font-size: 2.8rem;
-      text-align: right;
     }
 
     .sidenav {
@@ -116,4 +116,44 @@ span {
         position: relative;
         width: 100%; 
     }
+
+    .searchbar {
+        width: 60%;
+        padding-left: 2rem;
+    } 
+
+    li { 
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 2rem;
+    }
 }
+
+@media(max-width: 380px) {
+
+    .header {
+      width: 60%;
+      padding-top: 0;
+      padding-left: 1rem;
+      }
+    
+      h1 {
+        padding-right: 1rem;
+        font-size: 2.4rem;
+      }  
+  }
+
+  @media(max-width: 380px) {
+
+    .header {
+      width: 60%;
+      padding-top: 0;
+      padding-left: 0;
+      }
+    
+      h1 {
+        padding-right: 0;
+        font-size: 2.1rem;
+      }
+      
+  }

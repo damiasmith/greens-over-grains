@@ -75,14 +75,14 @@ li {
 @media(max-width: 660px) {
 
     .header {
-        padding-top: 6rem;
-        text-align: right;
-    }
+        width: 65%;
+        padding-top: 0;
+        padding-left: 1rem;
+        }
   
     h1 {
       padding-right: 1rem;
       font-size: 2.8rem;
-      text-align: right;
     }
 
     .side {
@@ -91,12 +91,53 @@ li {
     }
 
     .card-1 {
+        padding-left: 0;
         position: relative;
         width: 100%;
     }
 
     .card-2 {
+        padding-left: 0;
         position: relative;
         width: 100%; 
     }
+
+    .searchbar {
+        width: 60%;
+        padding-left: 1.5rem;
+    } 
 }
+
+@media(max-width: 575px) {
+    agm-map {
+        max-width: 80%;
+    }
+    
+    ul {
+        padding-left: 0; 
+    }
+}
+
+@media(max-width: 380px) {
+
+    .jumbotron {
+        padding-left: 1rem;
+    }
+
+    .header {
+      width: 60%;
+      padding-top: 0;
+      padding-left: 0;
+      }
+    
+      h1 {
+        padding-right: 0;
+        padding-left: 0;
+        font-size: 2rem;
+      }
+      li { 
+        padding-right: 0;
+        padding-left: 0;
+        }
+      
+  }

@@ -54,6 +54,7 @@
     white-space: nowrap;
     font-size: 100%;
     line-height: 2;
+    width: 50%;
     
 }
 
@@ -95,18 +96,20 @@ span {
 @media(max-width: 660px) {
 
     .header {
-        padding-top: 6rem;
-        text-align: right;
-    }
+        width: 70%;
+        padding-top: 0;
+        padding-left: 2rem;
+        }
   
     h1 {
       padding-right: 1rem;
       font-size: 2.8rem;
-      text-align: right;
     }
 
     .sidenav {
         position: relative;
+        width: 100%;
+        padding-left: 0;
     }
 
     .card-1 {
@@ -115,12 +118,9 @@ span {
     }
 
     .searchbar {
-        text-align: right;
         position: relative;
-        min-width: 50%;
-        max-width: 80%;
-        margin: auto;
-        width: 100%;
+        width: 60%;
+        padding-left: 1.5rem;
     } 
 
     .card-2 {
@@ -133,4 +133,24 @@ span {
         padding-right: 0;
         padding-top: 2rem;
     }
+
+    ul {
+        padding-left: 0; 
+        padding-right: 0;
+    }
 }
+
+@media(max-width: 380px) {
+
+    .header {
+      width: 60%;
+      padding-top: 0;
+      padding-left: 1rem;
+      }
+    
+      h1 {
+        padding-right: 1rem;
+        font-size: 2.2rem;
+      }
+      
+  }

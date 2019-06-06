@@ -29,7 +29,7 @@ export class ListViewComponent implements OnInit {
 
   ngOnInit() {
     this.service.getFoodItems()
-    .subscribe(foodItems => { this.foodItems = foodItems as any,
+    .subscribe(foodItems => { this.foodItems = foodItems,
       this.displayFoodItems = this.foodItems;
     });
   }
@@ -38,6 +38,7 @@ export class ListViewComponent implements OnInit {
     console.log(star);
     return Array.from(Array(star).keys());
   }
+
 
   onFilter(toggleFilter: string) {
     const index = this.activeFilters.findIndex(f => f === toggleFilter);
