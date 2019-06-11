@@ -32,6 +32,7 @@
 }
 
 .display-4 {
+    font-family: 'Open', sans-serif;
     color: white;
     z-index: 2;
     text-shadow:
@@ -42,6 +43,7 @@
 }
 
 .card-1 { 
+    font-family: 'Roboto', sans-serif;
     width: 35%;
     padding-top: 2rem;
     padding-left: 1rem;
@@ -62,6 +64,7 @@
 }
 
 .card-2 {
+    font-family: 'Roboto', sans-serif;
     width: 65%;
 }
 
@@ -150,6 +153,10 @@ span {
       padding-top: 0;
       padding-left: 0;
       }
+      
+    .container {
+        padding-left: 0; 
+    }  
     
       h1 {
         padding-right: 0;

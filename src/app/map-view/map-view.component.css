@@ -34,6 +34,7 @@
 }
 
 .display-4 {
+    font-family: 'Open', sans-serif;
     color: white;
     text-shadow:
     -1px -1px 0 #000,
@@ -54,6 +55,7 @@
 }
 
 .card-2 {
+    font-family: 'Roboto', sans-serif;
     width: 50%;
     font-size: 1rem;
 }
@@ -122,6 +124,10 @@ li {
 
     .jumbotron {
         padding-left: 1rem;
+    }
+
+    .container {
+        padding-left: 0;
     }
 
     .header {
