@@ -1,13 +1,16 @@
-.jumbotron{
+.background {
     padding-top: 6rem;
     padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     box-sizing: border-box;
-    z-index: -2;
-  }
-
-  .jumbotron::before {
+    position: relative;
+}
+  
+.background::before {
     background-image: url(https://raw.githubusercontent.com/damiasmith/greens-over-grains/stackblitz/src/assets/leaf-background.jpg);
     background-size: cover;
     background-position: center;
@@ -22,20 +25,19 @@
     top: 0;
     left: 0;
     z-index: 0;
-    opacity: 0.1;
-    }
+    opacity: 0.2;
+}
 
- .header {
+.header {
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 0;
     z-index: 2;
-    }
+}
 
 .display-4 {
     font-family: 'Open Sans', sans-serif;
     color: white;
-    z-index: 2 !important;
     text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
@@ -48,7 +50,6 @@
     width: 35%;
     padding-top: 2rem;
     padding-left: 1rem;
-
 }
 
 .sidenav {
@@ -56,15 +57,13 @@
     white-space: nowrap;
     font-size: 100%;
     line-height: 2;
-    width: 50%;
-    
+    width: 50%; 
 }
 
 .filter {
     padding-top: 2rem;
     padding-left: 4rem;
     line-height: 2.4;
-    
 }
 
 .card-2 {
@@ -72,13 +71,16 @@
     width: 65%;
 }
  
-
 li { 
     padding: 2rem;
     white-space: wrap;
     font-size: 100%;
     line-height: 1.5;
     list-style: none;
+}
+
+a {
+    color: green;
 }
 
 span {
@@ -92,21 +94,22 @@ span {
     line-height:1.2;
     color: lightpink;
 }
+
 .checked, .checked ~ span {
     color: deeppink !important;
 }
 
-@media(max-width: 660px) {
+@media(max-width: 660px) { 
 
     .header {
         width: 70%;
         padding-top: 0;
         padding-left: 2rem;
-        }
+    }
   
     h1 {
-      padding-right: 1rem;
-      font-size: 2.8rem;
+        padding-right: 1rem;
+        font-size: 2.8rem;
     }
 
     .sidenav {
@@ -132,7 +135,7 @@ span {
     }
 
     li { 
-        padding-left: 0;
+        padding-left: 1rem;
         padding-right: 0;
         padding-top: 2rem;
     }
@@ -158,6 +161,5 @@ span {
     h1 {
         padding-right: 1rem;
         font-size: 2.2rem;
-    }
-      
-  }
+    }  
+}

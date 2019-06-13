@@ -1,14 +1,16 @@
-.jumbotron {
+.background {
   padding-top: 6rem;
   padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin-top: 0;
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  z-index: -2;
+  position: relative;
 }
 
-.jumbotron::before {
+.background::before {
   background-image: url(https://raw.githubusercontent.com/damiasmith/greens-over-grains/stackblitz/src/assets/leaf-background.jpg);
   background-size: cover;
   background-position: center;
@@ -22,15 +24,13 @@
   max-height: 150rem;
   top: 0;
   left: 0;
-  z-index: 0;
-  opacity: 0.1;
-  }
+  opacity: 0.2;
+}
 
 .header {
   padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 0;
-  z-index: 2;
 }
 
 .display-4 {
@@ -41,7 +41,16 @@
   1px -1px 0 #000,
   -1px 1px 0 #000,
   1px 1px 0 #000; 
-  z-index: 2;
+}
+
+.display-5 {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000; 
 }
 
 .text {
@@ -103,16 +112,41 @@
   width: 50%;
 }
 
-.ng-valid.ng-dirty:not(form) {
-  border: solid 2px lightgreen;
+ul {
+  padding-top: 4rem;
+  padding-left: 0;
 }
 
-.ng-invalid.ng-dirty:not(form), .ng-invalid:not(form).submitted {
-  border: solid 2px lightcoral;
+li { 
+  padding: 2rem;
+  white-space: wrap;
+  font-size: 100%;
+  line-height: 1.5;
+  list-style: none;
+}
+
+a {
+  color: green;
+}
+
+span {
+  float: right;
+  text-align: center;
+  width:1em;
+  padding:0.1em;
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:200%;
+  line-height:1.2;
+  color: lightpink;
+}
+
+.checked, .checked ~ span {
+  color: deeppink !important;
 }
 
 @media(max-width: 660px) {
-
+ 
   .header {
     width: 70%;
     padding-top: 0;
@@ -131,9 +165,9 @@
 
 @media(max-width: 575px) {
   .header {
-  width: 70%;
-  padding-top: 0;
-  padding-left: 2rem;
+    width: 70%;
+    padding-top: 0;
+    padding-left: 2rem;
   }
 
   h1 {
@@ -143,7 +177,6 @@
 
   .card-1 {
     width: 100%;
-    
   }
 
   .card-2 {
@@ -173,11 +206,11 @@
     width: 60%;
     padding-top: 0;
     padding-left: 1rem;
-    }
+  }
   
-    h1 {
-      padding-right: 1rem;
-      font-size: 2.2rem;
-    }
+  h1 {
+    padding-right: 1rem;
+    font-size: 2.2rem;
+  }
     
 }

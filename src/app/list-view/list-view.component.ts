@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
 
 @Component({
@@ -35,10 +34,8 @@ export class ListViewComponent implements OnInit {
   }
 
   starRating(star) {
-    console.log(star);
     return Array.from(Array(star).keys());
   }
-
 
   onFilter(toggleFilter: string) {
     const index = this.activeFilters.findIndex(f => f === toggleFilter);
@@ -47,7 +44,6 @@ export class ListViewComponent implements OnInit {
      } else {
       this.activeFilters.push(toggleFilter);
      }
-    console.log(this.activeFilters);
     this.displayFoodItems = this.foodItems
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));

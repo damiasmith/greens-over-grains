@@ -1,20 +1,22 @@
-.jumbotron{
+.background {
     padding-top: 6rem;
     padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 0;
     width: 100%;
     height: auto;
     box-sizing: border-box;
-    z-index: -2;
-  }
-
-  .jumbotron::before {
+    position: relative;
+}
+  
+.background::before {
     background-image: url(https://raw.githubusercontent.com/damiasmith/greens-over-grains/stackblitz/src/assets/leaf-background.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     content: "";
     display: block;
-    box-sizing: border-box;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -23,8 +25,8 @@
     top: 0;
     left: 0;
     z-index: 0;
-    opacity: 0.1;
-    }
+    opacity: 0.2;
+}
 
 .header {
     padding-top: 0;
@@ -44,9 +46,10 @@
 }
 
 .card-1 { 
-    width: 45%;
+    width: 55%;
     padding-top: 2rem;
     padding-left: 2rem;
+    z-index: 2;
 }
 
 .side {
@@ -56,14 +59,19 @@
 
 .card-2 {
     font-family: 'Roboto', sans-serif;
-    width: 50%;
+    width: 40%;
     font-size: 1rem;
+    z-index: 2;
 }
  
 agm-map {
     max-width: 100%;
     height: 20rem;
     margin: 2rem;
+}
+
+.map {
+    background-color: light pink !important;
 }
 
 li { 
@@ -74,17 +82,21 @@ li {
     list-style: none;
 }
 
+a {
+    color: green;
+}
+
 @media(max-width: 660px) {
 
     .header {
         width: 65%;
         padding-top: 0;
-        padding-left: 1rem;
-        }
+        padding-left: 0;
+    }   
   
     h1 {
       padding-right: 1rem;
-      font-size: 2.8rem;
+      font-size: 2.6rem;
     }
 
     .side {
@@ -111,39 +123,36 @@ li {
 }
 
 @media(max-width: 575px) {
+    
     agm-map {
         max-width: 80%;
     }
     
     ul {
-        padding-left: 0; 
+        padding-left: 1rem; 
     }
 }
 
 @media(max-width: 380px) {
-
-    .jumbotron {
-        padding-left: 1rem;
-    }
 
     .container {
         padding-left: 0;
     }
 
     .header {
-      width: 60%;
-      padding-top: 0;
-      padding-left: 0;
-      }
+        width: 60%;
+        padding-top: 0;
+        padding-left: 0;
+    }
     
-      h1 {
+    h1 {
         padding-right: 0;
         padding-left: 0;
         font-size: 2rem;
-      }
-      li { 
+    }
+
+    li { 
         padding-right: 0;
         padding-left: 0;
-        }
-      
-  }
+    }
+}

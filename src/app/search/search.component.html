@@ -1,5 +1,5 @@
-<div class="jumbotron">
-    <div class="jumbotron jumbotron-fluid text-center header"> 
+<div class="background">
+    <div class="text-center header"> 
         <div class="container"> 
             <h1 class="display-4">Search Results</h1> 
         </div> 
@@ -11,15 +11,20 @@
         </div>
         <ng-template #notEmpty>
           <div *ngFor="let result of results" class="results"> 
-            <li *ngIf="result.itemName"> {{result.itemName}} <br> {{result.restaurantName}} <br> {{result.filters}} <br>
-              <span *ngFor="let i of [5, 4, 3, 2, 1]" [ngClass]="{checked: result.rating==i}"> ★ {{i}} </span>
+            <li *ngIf="result.itemName"> 
+              {{result.itemName}} <br> 
+              {{result.restaurantName}} <br> 
+              {{ (result.filters.join(', ')) }} <br>
+              <span *ngFor="let i of [5, 4, 3, 2, 1]" 
+                [ngClass]="{checked: result.rating==i}"> ★ {{i}} 
+              </span>
             </li>
             <li *ngIf="result.address">
-              <a [routerLink]="['/restaurant-details', result.id]">{{result.restaurantName}} 
+              <a [routerLink]="['/../restaurant-details', result.id]">{{result.restaurantName}} 
              </a> <br>
               {{result.address}} <br> 
               {{result.phoneNumber}} <br> 
-              {{result.hours}} <br> 
+              {{ (result.hours) }} <br> 
               <a href="{{result.website}}">{{result.website}}
               </a>
             </li>

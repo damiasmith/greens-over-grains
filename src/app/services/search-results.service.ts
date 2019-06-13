@@ -47,7 +47,6 @@ export class SearchResultsService {
         results.push( restaurants[i] );
       }
     }
-    console.log(results);
     this.searchResults.next(results);
   }
 }

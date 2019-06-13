@@ -12,21 +12,7 @@ import { Router } from '@angular/router';
 })
 
 export class MapViewComponent implements OnInit {
-  filters = [
-    'gluten-free',
-    'vegetarian',
-    'vegan',
-    'pescatarian',
-    'lactose-free'
-  ];
-
-  activeFilters: Set<string> = new Set<string>();
-
   restaurantsInfo: Restaurant[] = [];
-
-  router: Router;
-
-  clicked = [];
 
   zoom = 12;
   lat = 38.620771;
@@ -91,22 +77,13 @@ export class MapViewComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantInfoService.getRestaurants()
-    .subscribe(restaurantsInfo => { this.restaurantsInfo = restaurantsInfo as any,
+    .subscribe(restaurantsInfo => { this.restaurantsInfo = restaurantsInfo,
       console.log(restaurantsInfo);
     });
   }
 
-  /* onMouseOver(infoWindow, $event: MouseEvent) {
-    infoWindow.open();
-    infoWindow.close();
-  }*/
-
   onClick(infoWindow, $event: MouseEvent) {
       infoWindow.open();
-  }
-
-  clickedMarker(id: number, index: number) {
-    console.log (id);
   }
 }
 
@@ -117,4 +94,5 @@ interface Marker {
   label?: string;
   draggable: boolean;
 }
+
 

@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Restaurant } from '../services/restaurant.interface';
 import { RouterModule, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { FoodItem } from '../services/food-item.interface';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -18,34 +19,35 @@ export class RestaurantDetailsComponent implements OnInit {
   displayFoodItems = [];
 
   filters = [
-    'gluten-free' + ' ',
-    'vegetarian' + ' ',
-    'vegan' + ' ',
-    'pescatarian' + ' ',
-    'lactose-free' + ' '
+    'gluten-free',
+    'vegetarian',
+    'vegan',
+    'pescatarian',
+    'lactose-free'
   ];
 
   activeFilters = [];
 
   restaurant: Restaurant;
+  foodItem: FoodItem;
+
+  searchResults = [];
 
   constructor(
     private restaurantInfoService: RestaurantInfoService,
-    private addFooditemService: AddFoodItemService,
+    private addFoodItemService: AddFoodItemService,
     private route: ActivatedRoute) {
       this.route.params.subscribe( params => console.log(params));
     }
 
   ngOnInit() {
     this.restaurantInfoService.getRestaurant(+this.route.snapshot.paramMap.get('id'))
-    .subscribe(restaurantInfo => { this.restaurant = restaurantInfo,
-      console.log(restaurantInfo);
-    }),
-
-    this.addFooditemService.getFoodItems()
-    .subscribe(foodItems => { this.foodItems = foodItems,
-      this.displayFoodItems = this.foodItems;
+    .subscribe(restaurantInfo => { this.restaurant = restaurantInfo;
     });
+    this.addFoodItemService.getFoodItem(+this.route.snapshot.paramMap.get('id'))
+    .subscribe(addFoodItems => { this.foodItem = addFoodItems;
+    });
+    console.log(this.foodItem);
   }
 
   onFilter(toggleFilter: string) {

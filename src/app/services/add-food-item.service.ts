@@ -79,9 +79,9 @@ export class AddFoodItemService {
       filters: ['gluten-free', 'pescatarian'],
       rating: '3'
     }
+  ];
 
-
-];
+  private newMeals: FoodItem[] = [];
 
   private filters = [
     {name: 'gluten-free', selected: false, id: 1},
@@ -95,8 +95,16 @@ export class AddFoodItemService {
     return of(this.meals);
    }
 
+   getFoodItem(id: number) {
+    return of(this.meals.filter(foodItem => foodItem.id === id));
+  }
+
+   getAddedFoodItem() {
+     return of(this.newMeals);
+   }
+
    addFoodItems(item: FoodItem) {
     this.meals.push(item);
-    console.log(item);
+    this.newMeals.push(item);
    }
 }

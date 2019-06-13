@@ -18,8 +18,10 @@ export class AddReviewComponent implements OnInit {
     {name: 'pescatarian', selected: false, id: 4},
     {name: 'lactose-free', selected: false, id: 5}
   ];
-  submitted = false;
 
+  foodItems = [];
+  displayFoodItems = [];
+  submitted = false;
 
   constructor(
     private service: AddFoodItemService,
@@ -28,6 +30,11 @@ export class AddReviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.service.getAddedFoodItem()
+    .subscribe(foodItems => { this.foodItems = foodItems,
+      this.displayFoodItems = this.foodItems;
+    });
+
     this.form = this.fb.group ({
       itemName: ['', Validators.required],
       restaurantName: ['', Validators.required],
@@ -38,7 +45,6 @@ export class AddReviewComponent implements OnInit {
 
  addCheckboxes() {
     const arr = this.filters.map(filter => {
-      console.log(this.filters);
       return this.fb.control(filter.selected);
     });
     return this.fb.array(arr);
@@ -49,8 +55,6 @@ export class AddReviewComponent implements OnInit {
     ).map(filter => filter.name);
   }
 
-  get f() { return this.form.controls; }
-
   onAdd() {
     this.submitted = true;
     if (this.form.invalid) {
@@ -60,6 +64,7 @@ export class AddReviewComponent implements OnInit {
       this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
       this.form.reset();
     }
+    console.log(this.displayFoodItems);
   }
 }
 

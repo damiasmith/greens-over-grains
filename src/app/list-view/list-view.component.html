@@ -1,5 +1,5 @@
-<div class="jumbotron">
-    <div class="jumbotron jumbotron-fluid text-center header"> 
+<div class="background">
+    <div class=" text-center header"> 
         <div class="container"> 
             <h1 class="display-4">Food Reviews</h1> 
         </div> 
@@ -17,10 +17,10 @@
                                 <div *ngFor="let filter of filters">
                                     <label class="form-check-label">
                                         <input (click) = "onFilter(filter)"
-                                                type="checkbox" 
-                                                class="form-check-input" 
-                                                value=""> 
-                                                {{ filter }}
+                                            type="checkbox" 
+                                            class="form-check-input" 
+                                            value=""> 
+                                            {{ filter }}
                                     </label>
                                 </div>
                             </div>
@@ -39,9 +39,10 @@
                                 <a [routerLink]="['/restaurant-details', item.id]">
                                     {{item.restaurantName}} 
                                 </a> <br> 
-                                {{item.filters}} <br>
+                                {{ (item.filters.join(', ')) }} <br>
                                 <span *ngFor="let i of [5, 4, 3, 2, 1]" 
-                                [ngClass]="{checked: item.rating==i}"> ★ {{i}}                                         </span>
+                                    [ngClass]="{checked: item.rating==i}"> ★ {{i}} 
+                                </span>
                             </li>
                         </ul>
                     </div>

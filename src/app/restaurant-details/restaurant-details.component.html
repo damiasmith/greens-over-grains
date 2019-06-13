@@ -1,52 +1,63 @@
-<div class="jumbotron">
-    <div class="jumbotron jumbotron-fluid text-center header"> 
-        <div class="container"> 
-            <h1 class="display-4"> Restaurant Info</h1> 
-        </div> 
-    </div>
-        <div class="card-group"> 
-          <div class="card-1"> 
-            <div class="card-block">  
-              <div class="sidenav">
-                <div class="row"> 
-                    <div class="col-sm-10">
-                      <div class="searchbar">
-                        <app-searchbar></app-searchbar>
-                      </div>   
-                        <div class="filter">   
-                          <div *ngFor="let filter of filters">
-                            <div class="row"> 
-                                <label class="form-check-label">
-                                    <input (click) = "onFilter(filter)"
-                                                type="checkbox" 
-                                                class="form-check-input" 
-                                                value=""> 
-                                                {{ filter }}
-                                </label>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
+<div class="background">
+  <div class="text-center header"> 
+    <div class="container"> 
+      <h1 class="display-4"> Restaurant Info</h1> 
+    </div> 
+  </div>
+  <div class="card-group"> 
+    <div class="card-1"> 
+      <div class="card-block">  
+        <div class="sidenav">
+          <div class="row"> 
+            <div class="col-sm-10">
+              <div class="searchbar">
+                <app-searchbar></app-searchbar>
+              </div>   
+              <div class="filter">   
+                <div *ngFor="let filter of filters">
+                  <div class="row"> 
+                    <label class="form-check-label">
+                      <input (click) = "onFilter(filter)"
+                        type="checkbox" 
+                        class="form-check-input" 
+                        value=""> 
+                        {{ filter }}                 
+                    </label>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>                     
+          </div>
+        </div>
+      </div>                     
     </div>  
     
-      <div class="card-2"> 
-        <div class="card-block">
-          <div class="row container"> 
-            <div class="col-sm-10">
-                <ul>
-                <li>
-                  {{restaurant?.restaurantName}}  <br> {{restaurant?.address}} <br> {{restaurant?.phoneNumber}} <br> {{restaurant?.hours}} <br> {{restaurant?.website}}
-                </li>
-                <li>
-                  
-                </li>
-              </ul>
-            </div>
+    <div class="card-2"> 
+      <div class="card-block">
+        <div class="row container"> 
+          <div class="col-sm-12">
+            <ul>
+              <li>
+                {{restaurant?.restaurantName}}  <br> 
+                {{restaurant?.address}} <br> 
+                {{restaurant?.phoneNumber}} <br> 
+                {{restaurant?.hours}} <br> 
+                {{restaurant?.website}}
+              </li>
+            </ul>
+            <ul *ngFor="let item of foodItem">
+              <li>
+                 {{item?.itemName}}  <br> 
+                 {{item?.restaurantName}} <br>
+                 {{ (item?.filters.join(', ')) }} <br>
+                  <span *ngFor="let i of [5, 4, 3, 2, 1]" 
+                  [ngClass]="{checked: item?.rating==i}"> ★ {{i}}>
+                  </span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

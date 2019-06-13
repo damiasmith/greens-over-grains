@@ -3,8 +3,8 @@
     box-sizing: border-box;
     margin: auto;
     padding: 0; 
-
 }
+
 .container {
     position: absolute;
     box-sizing: border-box;
@@ -15,6 +15,7 @@
     width: 100%;
     margin: 0 auto;
 }
+
 .header {
     display: flex; 
     justify-content: space-between; 
@@ -35,12 +36,11 @@ ul {
     flex-wrap: wrap column;
     justify-content: space-between; 
     padding: 0;
-    
 }
 
 li {
     margin: 0.5rem;    
-    }   
+}   
 
 .logo {
     height: auto;
@@ -49,10 +49,10 @@ li {
 }
 
 @media(max-width: 660px) {
-    .header{
+    .header {
         flex-direction: column;  
-
     }
+
    button {
        background-color: white;
        padding: 0.5;
@@ -66,7 +66,6 @@ li {
 
     .thumbnail {
         justify-content: center;
-        
     }
 
     .right {
