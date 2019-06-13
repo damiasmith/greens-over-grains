@@ -29,9 +29,7 @@ export class RestaurantDetailsComponent implements OnInit {
   activeFilters = [];
 
   restaurant: Restaurant;
-  foodItem: FoodItem;
-
-  searchResults = [];
+  foodItem: [FoodItem];
 
   constructor(
     private restaurantInfoService: RestaurantInfoService,
@@ -47,7 +45,7 @@ export class RestaurantDetailsComponent implements OnInit {
     this.addFoodItemService.getFoodItem(+this.route.snapshot.paramMap.get('id'))
     .subscribe(addFoodItems => { this.foodItem = addFoodItems;
     });
-    console.log(this.foodItem);
+    this.displayFoodItems = this.foodItem;
   }
 
   onFilter(toggleFilter: string) {
@@ -57,9 +55,10 @@ export class RestaurantDetailsComponent implements OnInit {
      } else {
       this.activeFilters.push(toggleFilter);
      }
-    console.log(this.activeFilters);
-    this.displayFoodItems = this.foodItems
+
+    this.displayFoodItems = this.foodItem
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
+    console.log(this.displayFoodItems);
   }
 }
