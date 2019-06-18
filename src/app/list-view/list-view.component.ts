@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddFoodItemService } from '../services/add-food-item.service';
+import { RestaurantInfoService } from '../services/restaurant-info.service';
 
 @Component({
   selector: 'app-list-view',
@@ -8,7 +9,8 @@ import { AddFoodItemService } from '../services/add-food-item.service';
 })
 
 export class ListViewComponent implements OnInit {
-
+  restaurants;
+  restaurantbyId = [];
   foodItems = [];
   displayFoodItems = [];
 
@@ -23,11 +25,12 @@ export class ListViewComponent implements OnInit {
   activeFilters = [];
 
   constructor(
-    private service: AddFoodItemService,
+    private addFoodItemService: AddFoodItemService,
+    private restaurantInfoService: RestaurantInfoService
     ) { }
 
   ngOnInit() {
-    this.service.getFoodItems()
+    this.addFoodItemService.getFoodItems()
     .subscribe(foodItems => { this.foodItems = foodItems,
       this.displayFoodItems = this.foodItems;
     });
@@ -47,5 +50,16 @@ export class ListViewComponent implements OnInit {
     this.displayFoodItems = this.foodItems
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
+  }
+  restaurantLookUp(value: string) {
+    this.restaurantInfoService.getRestaurants()
+    .subscribe(restaurantsInfo => {
+      this.restaurants = restaurantsInfo;
+      for (let restaurant of this.restaurants) {
+        if (restaurant._id === value ) {
+          return restaurant.restaurantName;
+        }
+      }
+    });
   }
 }

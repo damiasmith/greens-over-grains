@@ -36,8 +36,8 @@
                         <ul>
                             <li *ngFor="let item of displayFoodItems"> 
                                 {{item.itemName}} <br> 
-                                <a [routerLink]="['/restaurant-details', item.id]">
-                                    {{item.restaurantName}} 
+                                <a [routerLink]="['/restaurant-details', item._id]">
+                                    {{([item.restaurantId])}} 
                                 </a> <br> 
                                 {{ (item.filters.join(', ')) }} <br>
                                 <span *ngFor="let i of [5, 4, 3, 2, 1]" 

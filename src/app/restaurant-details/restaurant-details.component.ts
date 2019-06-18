@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MouseEvent } from '@agm/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Restaurant } from '../services/restaurant.interface';
-import { RouterModule, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { FoodItem } from '../services/food-item.interface';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -14,8 +11,8 @@ import { FoodItem } from '../services/food-item.interface';
   styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
-
-  foodItems = [];
+  restaurants;
+  foodItems;
   displayFoodItems = [];
 
   filters = [
@@ -28,9 +25,6 @@ export class RestaurantDetailsComponent implements OnInit {
 
   activeFilters = [];
 
-  restaurant: Restaurant;
-  foodItem: [FoodItem];
-
   constructor(
     private restaurantInfoService: RestaurantInfoService,
     private addFoodItemService: AddFoodItemService,
@@ -39,26 +33,30 @@ export class RestaurantDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.restaurantInfoService.getRestaurant(+this.route.snapshot.paramMap.get('id'))
-    .subscribe(restaurantInfo => { this.restaurant = restaurantInfo;
+    combineLatest (
+      this.restaurantInfoService.getRestaurant('id'),
+      this.addFoodItemService.getFoodItems()
+    )
+    .subscribe(([restaurants, foodItems]) => {
+      this.restaurants = restaurants;
+      this.foodItems = foodItems;
+
+      this.route.paramMap.subscribe(params => {
+        this.restaurants._id = params.get('id');
+        this.foodItems.restaurantId = params.get('id');
+      });
     });
-    this.addFoodItemService.getFoodItem(+this.route.snapshot.paramMap.get('id'))
-    .subscribe(addFoodItems => { this.foodItem = addFoodItems;
-    });
-    this.displayFoodItems = this.foodItem;
   }
 
-  onFilter(toggleFilter: string) {
+  /*onFilter(toggleFilter: string) {
     const index = this.activeFilters.findIndex(f => f === toggleFilter);
     if (index !== -1) {
       this.activeFilters.splice(index, 1);
      } else {
       this.activeFilters.push(toggleFilter);
      }
-
-    this.displayFoodItems = this.foodItem
+    this.displayFoodItems = this.foodItems
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
-    console.log(this.displayFoodItems);
-  }
+  }*/
 }

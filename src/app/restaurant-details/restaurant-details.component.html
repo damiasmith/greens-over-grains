@@ -48,7 +48,7 @@
             <ul *ngFor="let item of displayFoodItems">
               <li>
                  {{item?.itemName}}  <br> 
-                 {{item?.restaurantName}} <br>
+                 {{item?.restaurantId}} <br>
                  {{ (item?.filters.join(', ')) }} <br>
                   <span *ngFor="let i of [5, 4, 3, 2, 1]" 
                     [ngClass]="{checked: item?.rating==i}"> ★ {{i}}>
