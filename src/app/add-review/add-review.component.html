@@ -41,19 +41,13 @@
               <select class="custom-select"
                  formControlName="id"
                   type="text" 
-                  class="form-control text"
-                  [ngClass]="{ 'is-invalid': submitted && f.restaurantName.errors }">
+                  class="form-control text">
                  <option selected=''></option>
                 <option *ngFor="let restaurant of restaurants"  
                   value="{{restaurant.id}}">
                   {{restaurant.restaurantName}}
                 </option>
               </select> 
-              <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
-                  <div *ngIf="f.id.errors.required">
-                    Restaurant is required
-                  </div>
-              </div>
             </div> 
           </div>          
 
@@ -147,22 +141,21 @@
           </div>
         </form>
 
-        <div class="row container"> 
-          <div class="col-sm-12">   
+        <!-- <div class="row container">
+          <div class="col-sm-12">
             <ul *ngIf="submitted">
               <h3 class="display-5">New Review/s</h3>
-                <li *ngFor="let item of displayFoodItems"> 
-                    {{item.itemName}} <br> 
-                    <a [routerLink]="['/restaurant-details', item.id]">
-                        {{item.restaurantName}} 
-                    </a> <br> 
-                    {{ (item.filters.join(', ')) }} <br>
-                    <span *ngFor="let i of [5, 4, 3, 2, 1]" 
-                    [ngClass]="{checked: item.rating==i}"> ★ {{i}}                                         </span>
-                </li>
+              <li *ngFor="let item of displayFoodItems">
+                {{item.itemName}} <br>
+                <a [routerLink]="['/restaurant-details', item.id]">
+                  {{item.restaurantName}}
+                </a> <br>
+                {{ (item.filters.join(', ')) }} <br>
+                <span *ngFor="let i of [5, 4, 3, 2, 1]" [ngClass]="{checked: item.rating==i}"> ★ {{i}} </span>
+              </li>
             </ul>
           </div>
-        </div>
+        </div> -->
      </div>
   </div>
 </div>

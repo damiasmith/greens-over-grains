@@ -23,7 +23,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddFoodItemService } from './services/add-food-item.service';
 import { SearchComponent } from './search/search.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -39,8 +38,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MapViewComponent,
     SignUpComponent,
     SearchComponent,
-    SearchbarComponent,
-    NotFoundComponent
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,

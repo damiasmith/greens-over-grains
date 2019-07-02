@@ -35,12 +35,10 @@ export class AddReviewComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group ({
       itemName: ['', Validators.required],
-      restaurantName: [''],
       id: ['', Validators.required],
       filters: this.addCheckboxes(),
       rating: ['', Validators.required]
     });
-    console.log(this.form.controls.id.value);
 
     combineLatest (
       this.restaurantInfoService.getRestaurants(),
@@ -63,6 +61,7 @@ export class AddReviewComponent implements OnInit {
     return this.filters.filter((filter, index) => selected[index]
     ).map(filter => filter.name);
   }
+  get f() { return this.form.controls; }
 
   getName(id) {
     id = this.form.controls.id.value;
@@ -73,13 +72,11 @@ export class AddReviewComponent implements OnInit {
       return displayRestaurant;
    } else {
       return '';
+    }
   }
-}
-
-  get f() { return this.form.controls; }
 
   onAdd() {
-    this.submitted = !this.submitted;
+    this.submitted = true;
     if (this.form.invalid) {
       return;
     } else if (this.form.valid) {
@@ -87,6 +84,7 @@ export class AddReviewComponent implements OnInit {
       this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
         restaurantName: this.getName(foodItem.id)});
       this.form.reset();
+      this.submitted = !this.submitted;
     }
   }
 }

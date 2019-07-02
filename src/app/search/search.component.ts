@@ -18,8 +18,6 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchResults = this.searchResultsService.onResults().subscribe(results => this.results = results);
-    /* this.empty = this.searchResults.map(results => this.results.length < 1);
-    console.log(this.empty);*/
   }
 
 }

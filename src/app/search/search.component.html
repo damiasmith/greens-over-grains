@@ -6,8 +6,11 @@
     </div>
     <div class="container">
       <ul>
-        <div *ngIf="empty; else notEmpty" class="text-center">
+        <div *ngIf="results.length === 0; else notEmpty" class="text-center not-found">
           No Results Found
+          <div class ="searchbar">
+            <app-searchbar></app-searchbar>
+          </div>
         </div>
         <ng-template #notEmpty>
           <div *ngFor="let result of results" class="results"> 
