@@ -1,7 +1,7 @@
 import { Url } from 'url';
 
 export interface Restaurant {
-    id: number;
+    id: string;
     restaurantName: string;
     address: string;
     phoneNumber: string;

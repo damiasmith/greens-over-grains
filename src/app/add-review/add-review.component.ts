@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { combineLatest } from 'rxjs';
+import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FoodItem } from '../services/food-item.interface';
 
 @Component({
   selector: 'app-add-review',
@@ -21,26 +22,34 @@ export class AddReviewComponent implements OnInit {
 
   foodItems = [];
   displayFoodItems = [];
+  restaurants = [];
   submitted = false;
 
   constructor(
-    private service: AddFoodItemService,
+    private addFoodItemService: AddFoodItemService,
+    private restaurantInfoService: RestaurantInfoService,
     private fb: FormBuilder
     ) {
   }
 
   ngOnInit() {
-    this.service.getAddedFoodItem()
-    .subscribe(foodItems => { this.foodItems = foodItems,
-      this.displayFoodItems = this.foodItems;
-    });
-
     this.form = this.fb.group ({
       itemName: ['', Validators.required],
-      restaurantName: ['', Validators.required],
+      restaurantName: [''],
+      id: ['', Validators.required],
       filters: this.addCheckboxes(),
       rating: ['', Validators.required]
     });
+    console.log(this.form.controls.id.value);
+
+    combineLatest (
+      this.restaurantInfoService.getRestaurants(),
+      this.addFoodItemService.getFoodItems()
+    )
+    .subscribe(([restaurants, foodItems]) => {
+      this.restaurants = restaurants;
+      this.foodItems = foodItems;
+  });
   }
 
  addCheckboxes() {
@@ -55,16 +64,30 @@ export class AddReviewComponent implements OnInit {
     ).map(filter => filter.name);
   }
 
+  getName(id) {
+    id = this.form.controls.id.value;
+    console.log(id);
+    let displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
+    if (displayRestaurant) {
+      console.log(displayRestaurant);
+      return displayRestaurant;
+   } else {
+      return '';
+  }
+}
+
+  get f() { return this.form.controls; }
+
   onAdd() {
-    this.submitted = true;
+    this.submitted = !this.submitted;
     if (this.form.invalid) {
       return;
     } else if (this.form.valid) {
       const foodItem = this.form.value;
-      this.service.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters)});
+      this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
+        restaurantName: this.getName(foodItem.id)});
       this.form.reset();
     }
-    console.log(this.displayFoodItems);
   }
 }
 

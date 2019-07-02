@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 export class RestaurantInfoService {
   private restaurantsArray: Restaurant[] = [
   {
-    id: 101,
+    id: '101',
     restaurantName: 'Lona’s LiL Eats',
     address: '2199 California Ave, St. Louis, MO 63104',
     phoneNumber: '314.925.8938',
@@ -17,7 +17,7 @@ export class RestaurantInfoService {
     website: 'http://lonaslileats.com/'
   },
   {
-    id: 102,
+    id: '102',
     restaurantName: 'Meskerem',
     address: '3210 S. Grand Blvd, St. Louis, MO 63118',
     phoneNumber: '314.772.4442',
@@ -25,7 +25,7 @@ export class RestaurantInfoService {
     website: 'http://meskeremstl.com/'
   },
   {
-    id: 103,
+    id: '103',
     restaurantName: 'Pho Grand',
     address: '3195 S Grand Blvd, St. Louis, MO 63118',
     phoneNumber: '314.664.7435',
@@ -33,7 +33,7 @@ export class RestaurantInfoService {
     website: 'https://www.phogrand.com/'
   },
   {
-    id: 104,
+    id: '104',
     restaurantName: 'The Mudhouse',
     address: '2101 Cherokee St, St. Louis, MO 63118',
     phoneNumber: '314.776.6599',
@@ -41,7 +41,7 @@ export class RestaurantInfoService {
     website: 'http://www.themudhousestl.com/'
   },
   {
-    id: 105,
+    id: '105',
     restaurantName: 'Rise Coffee House',
     address: '4176 Manchester Ave, St. Louis, MO 63110',
     phoneNumber: '314.405.8171',
@@ -49,7 +49,7 @@ export class RestaurantInfoService {
     website: 'https://risecoffeestl.com/'
   },
   {
-    id: 106,
+    id: '106',
     restaurantName: 'La Vallesana',
     address: '2801 Cherokee St, St. Louis, MO 63118',
     phoneNumber: '314.776.4223',
@@ -57,7 +57,7 @@ export class RestaurantInfoService {
     website: 'https://www.neverialavallesana.com/'
   },
   {
-    id: 107,
+    id: '107',
     restaurantName: 'Mission Taco Joint - Soulard',
     address: '908 Lafayette Ave, St. Louis, MO 63104',
     phoneNumber: '314.858.8226',
@@ -71,7 +71,7 @@ export class RestaurantInfoService {
     return of(this.restaurantsArray);
   }
 
-  getRestaurant(id: number) {
+  getRestaurant(id: string) {
     return of(this.restaurantsArray.find(restaurant => restaurant.id === id));
   }
 

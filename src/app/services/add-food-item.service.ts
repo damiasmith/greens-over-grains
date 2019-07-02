@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 export class AddFoodItemService {
   private meals: FoodItem[] = [
     {
-      id: 101,
+      id: '101',
       itemName: 'Spicy Tofu Wrap with Spicy Eggplant',
       restaurantName: 'Lona\'s LiL Eats',
       filters: ['gluten-free', 'vegetarian'],
@@ -17,63 +17,63 @@ export class AddFoodItemService {
       image: 'spicy_tofu_wrap.jpg'
     },
     {
-      id: 102,
+      id: '102',
       itemName: 'Vegetarian Combo with Gluten-Free Injera',
       restaurantName: 'Meskerem',
       filters: ['gluten-free', 'vegetarian', 'vegan', 'lactose-free'],
       rating: '5'
     },
     {
-      id: 103,
+      id: '103',
       itemName: 'Tofu Xa Ot (chiles and lemongrass)',
       restaurantName: 'Pho Grand',
       filters: ['gluten-free', 'vegetarian', 'vegan', 'lactose-free'],
       rating: '5'
     },
     {
-      id: 104,
+      id: '104',
       itemName: 'Mudslinger with Gluten-Free Bread',
       restaurantName: 'The Mudhouse',
       filters: ['gluten-free', 'vegetarian', 'vegan', 'lactose-free'],
       rating: '5'
     },
     {
-      id: 104,
+      id: '104',
       itemName: 'Okra Masala with Gluten-Free Bread',
       restaurantName: 'The Mudhouse',
       filters: ['gluten-free', 'vegetarian', 'lactose-free'],
       rating: '3'
     },
     {
-      id: 104,
+      id: '104',
       itemName: 'The Goat with Gluten-Free Bread',
       restaurantName: 'The Mudhouse',
       filters: ['gluten-free', 'vegetarian'],
       rating: '4'
     },
     {
-      id: 105,
+      id: '105',
       itemName: 'Hash',
       restaurantName: 'Rise Coffee House',
       filters: ['gluten-free', 'vegetarian'],
       rating: '4'
     },
     {
-      id: 105,
+      id: '105',
       itemName: 'Tumeric and Ginger Rice Bowl',
       restaurantName: 'Rise Coffee House',
       filters: ['gluten-free' , 'vegetarian'],
       rating: '5'
     },
     {
-      id: 106,
+      id: '106',
       itemName: 'Spicy Shrimp Tacos with Corn Tortillas',
       restaurantName: 'La Vallesana',
       filters: ['gluten-free', 'pescatarian'],
       rating: '5'
     },
     {
-      id: 107,
+      id: '107',
       itemName: 'Grilled Baja Fish Taco',
       restaurantName: 'Mission Taco Joint',
       filters: ['gluten-free', 'pescatarian'],
@@ -95,7 +95,7 @@ export class AddFoodItemService {
     return of(this.meals);
    }
 
-   getFoodItem(id: number) {
+   getFoodItem(id: string) {
     return of(this.meals.filter(foodItem => foodItem.id === id));
   }
 

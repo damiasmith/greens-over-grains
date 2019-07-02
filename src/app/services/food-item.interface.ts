@@ -2,7 +2,7 @@
 
 
 export interface FoodItem {
-    id?: number;
+    id?: string;
     itemName: string;
     restaurantName: string;
     filters: Array<string>;

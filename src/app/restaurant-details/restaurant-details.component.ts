@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Restaurant } from '../services/restaurant.interface';
 import { RouterModule, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -29,7 +28,7 @@ export class RestaurantDetailsComponent implements OnInit {
   activeFilters = [];
 
   restaurant: Restaurant;
-  foodItem: [FoodItem];
+  foodItem: FoodItem;
 
   constructor(
     private restaurantInfoService: RestaurantInfoService,
@@ -39,13 +38,13 @@ export class RestaurantDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.restaurantInfoService.getRestaurant(+this.route.snapshot.paramMap.get('id'))
+    this.restaurantInfoService.getRestaurant(this.route.snapshot.paramMap.get('id'))
     .subscribe(restaurantInfo => { this.restaurant = restaurantInfo;
     });
-    this.addFoodItemService.getFoodItem(+this.route.snapshot.paramMap.get('id'))
-    .subscribe(addFoodItems => { this.foodItem = addFoodItems;
+    this.addFoodItemService.getFoodItem(this.route.snapshot.paramMap.get('id'))
+    .subscribe(addFoodItems => { this.foodItems = addFoodItems;
     });
-    this.displayFoodItems = this.foodItem;
+    this.displayFoodItems = this.foodItems;
   }
 
   onFilter(toggleFilter: string) {
@@ -56,7 +55,7 @@ export class RestaurantDetailsComponent implements OnInit {
       this.activeFilters.push(toggleFilter);
      }
 
-    this.displayFoodItems = this.foodItem
+    this.displayFoodItems = this.foodItems
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
     console.log(this.displayFoodItems);
