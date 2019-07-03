@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddFoodItemService } from '../services/add-food-item.service';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-list-view',
@@ -9,7 +10,7 @@ import { RestaurantInfoService } from '../services/restaurant-info.service';
 })
 
 export class ListViewComponent implements OnInit {
-  restaurants;
+  restaurants = {};
   restaurantbyId = [];
   foodItems = [];
   displayFoodItems = [];
@@ -30,10 +31,19 @@ export class ListViewComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.addFoodItemService.getFoodItems()
-    .subscribe(foodItems => { this.foodItems = foodItems,
+    combineLatest (
+      this.restaurantInfoService.getRestaurants(),
+      this.addFoodItemService.getFoodItems()
+    )
+    .subscribe(([restaurantsInfo, addFoodItems]) => {
+      this.restaurants = restaurantsInfo.reduce((accumulator, current) => {
+        accumulator[current._id] = current;
+        return accumulator;
+      }, {});
+      console.log(this.restaurants);
+      this.foodItems = addFoodItems;
       this.displayFoodItems = this.foodItems;
-    });
+      });
   }
 
   starRating(star) {
@@ -51,15 +61,16 @@ export class ListViewComponent implements OnInit {
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
   }
-  restaurantLookUp(value: string) {
-    this.restaurantInfoService.getRestaurants()
-    .subscribe(restaurantsInfo => {
-      this.restaurants = restaurantsInfo;
-      for (let restaurant of this.restaurants) {
-        if (restaurant._id === value ) {
-          return restaurant.restaurantName;
-        }
+
+  /*restaurantLookUp(id: string) {
+      let displayRestaurant = this.restaurants.find(restaurant => restaurant._id === id).restaurantName;
+      if (displayRestaurant) {
+        console.log(displayRestaurant);
+        return displayRestaurant;
+      } else {
+        return '';
       }
-    });
-  }
+  }*/
+
+
 }

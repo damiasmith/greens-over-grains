@@ -18,13 +18,13 @@ foodItemRoutes.route('/').post(function (req, res) {
 
 // Defined get data(index or listing) route
 foodItemRoutes.route('/').get(function (req, res) {
-    FoodItem.find(function (err, foodItems){
+    let query = req.query.restaurantId? {restaurantId: req.query.restaurantId}: {}
+    FoodItem.find(query, function (err, foodItems){
     if(err){
       console.log(err);
     }
     else {
       res.json(foodItems);
-      console.log(foodItems)
     }
   });
 });

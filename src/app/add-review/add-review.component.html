@@ -22,7 +22,13 @@
                 type="text" 
                 class="form-control text" 
                 id="itemName" 
-                placeholder="Food Item">
+                placeholder="Food Item"
+                [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }">
+                <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
+                  <div *ngIf="f.itemName.errors.required">
+                    Food Item is required
+                  </div>
+                </div>
             </div>
           </div> 
 

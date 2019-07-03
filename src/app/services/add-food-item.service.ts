@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FoodItem } from './food-item.interface';
-import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -22,13 +21,13 @@ export class AddFoodItemService {
 
   constructor(private http: HttpClient) { }
 
-   getFoodItems() {
-    return this.http.get(this.uri);
+   getFoodItems(restaurantId?) {
+    let params = new HttpParams();
+    if (restaurantId) {
+      params = params.set('restaurantId', restaurantId);
+    }
+    return this.http.get(this.uri, {params});
    }
-
-   getFoodItem(id: string) {
-    return of(this.meals.filter(foodItem => foodItem.restaurantId === id));
-  }
 
    addFoodItems(itemName, restaurantId, filters, rating) {
     const meals = {

@@ -24,7 +24,15 @@ restaurantRoutes.route('/').get(function (req, res) {
     }
     else {
       res.json(restaurants);
+      console.log(restaurants);
     }
+  });
+});
+
+restaurantRoutes.route('/:id').get(function (req, res) {
+  let id = req.params.id;
+  Restaurant.findById(id, function (err, restaurant){
+      res.json(restaurant);
   });
 });
 

@@ -11,7 +11,7 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
-  restaurants;
+  restaurant;
   foodItems;
   displayFoodItems = [];
 
@@ -33,20 +33,17 @@ export class RestaurantDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
     combineLatest (
-      this.restaurantInfoService.getRestaurant('id'),
-      this.addFoodItemService.getFoodItems()
+      this.restaurantInfoService.getRestaurant(id),
+      this.addFoodItemService.getFoodItems(id)
     )
-    .subscribe(([restaurants, foodItems]) => {
-      this.restaurants = restaurants;
+    .subscribe(([restaurant, foodItems]) => {
+      this.restaurant = restaurant;
       this.foodItems = foodItems;
-
-      this.route.paramMap.subscribe(params => {
-        this.restaurants._id = params.get('id');
-        this.foodItems.restaurantId = params.get('id');
+      this.displayFoodItems = this.foodItems;
       });
-    });
-  }
+    }
 
   /*onFilter(toggleFilter: string) {
     const index = this.activeFilters.findIndex(f => f === toggleFilter);
