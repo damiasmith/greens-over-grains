@@ -24,6 +24,7 @@ To view in stackblitz without database:
   
 ## Setup
 To run this project:
+
 clone or download
 
 cd ../greens-over-grains
@@ -38,9 +39,11 @@ install nodemon server with npm
 `npm install -g nodemon`
 
 Run `ng serve` 
+
 Run `mongod` in new tab
 
 cd ../greens-over-grains/api in new tab
+
 Run `nodemon server`
 
 Navigate to `http://localhost:4200/` 
