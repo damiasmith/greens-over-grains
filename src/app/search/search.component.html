@@ -16,14 +16,16 @@
           <div *ngFor="let result of results" class="results"> 
             <li *ngIf="result.itemName"> 
               {{result?.itemName}} <br> 
-              {{result?.restaurantId}} <br> 
+              <a [routerLink]="['/restaurant-details', result.restaurantId]"> 
+                {{restaurants[result?.restaurantId]?.restaurantName}} 
+              </a> <br>
               {{ (result?.filters.join(', ')) }} <br>
               <span *ngFor="let i of [5, 4, 3, 2, 1]" 
                 [ngClass]="{checked: result.rating==i}"> ★ {{i}} 
               </span>
             </li>
             <li *ngIf="result.address">
-              <a [routerLink]="['/../restaurant-details', result._id]">{{result.restaurantName}} 
+              <a [routerLink]="['/restaurant-details', restaurants._id]">{{result.restaurantName}} 
              </a> <br>
               {{result?.address}} <br> 
               {{result?.phoneNumber}} <br> 

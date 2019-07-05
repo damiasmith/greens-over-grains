@@ -11,6 +11,7 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
+  restaurants = [];
   restaurant;
   foodItems;
   displayFoodItems = [];
@@ -35,17 +36,23 @@ export class RestaurantDetailsComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     combineLatest (
+      this.restaurantInfoService.getRestaurants(),
       this.restaurantInfoService.getRestaurant(id),
       this.addFoodItemService.getFoodItems(id)
     )
-    .subscribe(([restaurant, foodItems]) => {
+    .subscribe(([restaurantsInfo, restaurant, foodItems]) => {
+      this.restaurants = restaurantsInfo.reduce((accumulator, current) => {
+        accumulator[current._id] = current;
+        return accumulator;
+      }, {});
+      console.log(this.restaurants);
       this.restaurant = restaurant;
       this.foodItems = foodItems;
       this.displayFoodItems = this.foodItems;
       });
     }
 
-  /*onFilter(toggleFilter: string) {
+  onFilter(toggleFilter: string) {
     const index = this.activeFilters.findIndex(f => f === toggleFilter);
     if (index !== -1) {
       this.activeFilters.splice(index, 1);
@@ -55,5 +62,5 @@ export class RestaurantDetailsComponent implements OnInit {
     this.displayFoodItems = this.foodItems
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
-  }*/
+  }
 }
