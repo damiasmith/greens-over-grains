@@ -79,6 +79,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ])
   ],
   providers: [AddFoodItemService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
