@@ -42,13 +42,15 @@
                 {{restaurant?.address}} <br> 
                 {{restaurant?.phoneNumber}} <br> 
                 {{restaurant?.hours}} <br> 
-                {{restaurant?.website}}
+                <a 
+                href="{{restaurant?.website}}">{{restaurant?.website}}
+                </a>
               </li>
             </ul>
             <ul *ngFor="let item of displayFoodItems">
               <li>
                  {{item?.itemName}}  <br> 
-                 {{item?.restaurantName}} <br>
+                 {{restaurants[item.restaurantId].restaurantName}}  <br>
                  {{ (item?.filters.join(', ')) }} <br>
                   <span *ngFor="let i of [5, 4, 3, 2, 1]" 
                     [ngClass]="{checked: item?.rating==i}"> ★ {{i}}>

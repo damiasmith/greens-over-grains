@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit} from '@angular/core';
+
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
+import { FoodItem } from '../services/food-item.interface';
+import { Restaurant } from '../services/restaurant.interface';
 
 @Component({
   selector: 'app-add-review',
@@ -20,9 +24,9 @@ export class AddReviewComponent implements OnInit {
     {name: 'lactose-free', selected: false, id: 5}
   ];
 
-  foodItems = [];
-  displayFoodItems = [];
-  restaurants = [];
+  foodItems: FoodItem[] = [];
+  restaurants: Restaurant[] = [];
+
   submitted = false;
 
   constructor(
@@ -35,7 +39,7 @@ export class AddReviewComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group ({
       itemName: ['', Validators.required],
-      id: ['', Validators.required],
+      restaurantId: ['', Validators.required],
       filters: this.addCheckboxes(),
       rating: ['', Validators.required]
     });
@@ -47,7 +51,7 @@ export class AddReviewComponent implements OnInit {
     .subscribe(([restaurants, foodItems]) => {
       this.restaurants = restaurants;
       this.foodItems = foodItems;
-  });
+    });
   }
 
  addCheckboxes() {
@@ -61,28 +65,20 @@ export class AddReviewComponent implements OnInit {
     return this.filters.filter((filter, index) => selected[index]
     ).map(filter => filter.name);
   }
+
   get f() { return this.form.controls; }
 
-  getName(id) {
-    id = this.form.controls.id.value;
-    console.log(id);
-    let displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
-    if (displayRestaurant) {
-      console.log(displayRestaurant);
-      return displayRestaurant;
-   } else {
-      return '';
-    }
-  }
-
-  onAdd() {
+  onAdd(itemName, restaurantId, filters, rating) {
     this.submitted = true;
+    filters = (this.form.controls.filters.value);
+    itemName = this.form.controls.itemName.value;
+    restaurantId = this.form.controls.restaurantId.value;
+    rating = this.form.controls.rating.value;
     if (this.form.invalid) {
       return;
-    } else if (this.form.valid) {
-      const foodItem = this.form.value;
-      this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
-        restaurantName: this.getName(foodItem.id)});
+    } else if (this.form.valid)  {
+      filters = this.addFilters(filters);
+      this.addFoodItemService.addFoodItems(itemName, restaurantId, filters, rating);
       this.form.reset();
       this.submitted = !this.submitted;
     }

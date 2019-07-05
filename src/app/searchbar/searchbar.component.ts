@@ -29,6 +29,7 @@ export class SearchbarComponent implements OnInit {
   onSubmit(value: string) {
     if (this.form.valid) {
       this.searchResultsService.search(value);
+      console.log(value);
       this.router.navigate(['/search']);
     }
   }

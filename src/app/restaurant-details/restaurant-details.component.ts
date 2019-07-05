@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MouseEvent } from '@agm/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
 import { Restaurant } from '../services/restaurant.interface';
-import { RouterModule, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { FoodItem } from '../services/food-item.interface';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -13,8 +11,9 @@ import { FoodItem } from '../services/food-item.interface';
   styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
-
-  foodItems = [];
+  restaurants = [];
+  restaurant;
+  foodItems;
   displayFoodItems = [];
 
   filters = [
@@ -27,9 +26,6 @@ export class RestaurantDetailsComponent implements OnInit {
 
   activeFilters = [];
 
-  restaurant: Restaurant;
-  foodItem: FoodItem;
-
   constructor(
     private restaurantInfoService: RestaurantInfoService,
     private addFoodItemService: AddFoodItemService,
@@ -38,14 +34,23 @@ export class RestaurantDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.restaurantInfoService.getRestaurant(this.route.snapshot.paramMap.get('id'))
-    .subscribe(restaurantInfo => { this.restaurant = restaurantInfo;
-    });
-    this.addFoodItemService.getFoodItem(this.route.snapshot.paramMap.get('id'))
-    .subscribe(addFoodItems => { this.foodItems = addFoodItems;
-    });
-    this.displayFoodItems = this.foodItems;
-  }
+    const id = this.route.snapshot.paramMap.get('id');
+    combineLatest (
+      this.restaurantInfoService.getRestaurants(),
+      this.restaurantInfoService.getRestaurant(id),
+      this.addFoodItemService.getFoodItems(id)
+    )
+    .subscribe(([restaurantsInfo, restaurant, foodItems]) => {
+      this.restaurants = restaurantsInfo.reduce((accumulator, current) => {
+        accumulator[current._id] = current;
+        return accumulator;
+      }, {});
+      console.log(this.restaurants);
+      this.restaurant = restaurant;
+      this.foodItems = foodItems;
+      this.displayFoodItems = this.foodItems;
+      });
+    }
 
   onFilter(toggleFilter: string) {
     const index = this.activeFilters.findIndex(f => f === toggleFilter);
@@ -54,10 +59,8 @@ export class RestaurantDetailsComponent implements OnInit {
      } else {
       this.activeFilters.push(toggleFilter);
      }
-
     this.displayFoodItems = this.foodItems
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
-    console.log(this.displayFoodItems);
   }
 }

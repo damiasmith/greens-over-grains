@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Restaurant } from './restaurant.interface';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { of } from 'rxjs';
 })
 
 export class RestaurantInfoService {
+<<<<<<< HEAD
   private restaurantsArray: Restaurant[] = [
   {
     id: '101',
@@ -64,15 +66,35 @@ export class RestaurantInfoService {
     hours: 'Monday – Saturday 11 am – 12:30 am, Sunday 11 am –11:00 pm',
     website: 'https://www.missiontacojoint.com/'
   },
+=======
+  uri = 'http://localhost:4000/restaurants';
+>>>>>>> mongodb
 
-  ];
+  constructor(private http: HttpClient) { }
 
   getRestaurants() {
-    return of(this.restaurantsArray);
+    return this.http.get(this.uri);
   }
 
+<<<<<<< HEAD
   getRestaurant(id: string) {
     return of(this.restaurantsArray.find(restaurant => restaurant.id === id));
+=======
+  getRestaurant(id) {
+    return this.http.get(`${this.uri}/${id}`);
+    }
+
+   addRestaurants(restaurantName, address, hours, website) {
+    const restaurants = {
+      restaurantName,
+      address,
+      hours,
+      website
+    };
+
+    this.http.post(this.uri, restaurants)
+        .subscribe(res => console.log('Done'));
+>>>>>>> mongodb
   }
 
 }

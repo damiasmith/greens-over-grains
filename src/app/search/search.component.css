@@ -45,13 +45,14 @@
     -1px 1px 0 #000,
     1px 1px 0 #000; 
     z-index: 2;
-} 
+}
 
 .not-found {
     font-family: 'Roboto', sans-serif;
     padding: 2rem;
     font-size:200%;
     line-height:1.5;  
+    
 }
 .searchbar {
     padding-top: 2rem;
@@ -77,6 +78,11 @@ span {
     line-height:1.2;
     color: lightpink;
 }
+
+a {
+    color: green;
+}
+
 
 .checked, .checked ~ span {
     color: deeppink !important;

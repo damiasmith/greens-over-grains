@@ -89,6 +89,10 @@ span {
     color:#ddd;
 }
 
+a {
+    color: green;
+}
+
 .checked, .checked ~ span {
     color: deeppink !important;
 }
