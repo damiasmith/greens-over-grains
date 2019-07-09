@@ -20,16 +20,16 @@ A web app for restaurant consumers to post, rate and categorize menu items by di
 
 ## Demo
 To view in stackblitz without database:
-`https://stackblitz.com/github/damiasmith/greens-over-grains/tree/stackblitzå`
+`https://stackblitz.com/github/damiasmith/greens-over-grains/tree/stackblitz`
   
 
 ## Setup
 To run this project:
 
-cd ../greens-over-grains
+`cd ../greens-over-grains`
 Run `ng serve` 
 Run `mongod`
 
-cd ../greens-over-grains/api
+`cd ../greens-over-grains/api`
 Run `nodemon server`
 Navigate to `http://localhost:4200/` 
