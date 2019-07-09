@@ -25,9 +25,11 @@
             <li *ngIf="result.address">
               <a [routerLink]="['/../restaurant-details', result.id]">{{result.restaurantName}} 
              </a> <br>
-              {{result.address}} <br> 
+             <div class="multiline">{{result.address.join(', \n')}} 
+             </div>
               {{result.phoneNumber}} <br> 
-              {{ (result.hours) }} <br> 
+              <div class="multiline">{{ (result.hours.join(', \n')) }}
+              </div> 
               <a href="{{result.website}}">{{result.website}}
               </a>
             </li>

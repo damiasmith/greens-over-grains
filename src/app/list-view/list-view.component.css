@@ -60,6 +60,10 @@
     width: 50%; 
 }
 
+.searchbar {
+    line-height: 3; 
+}
+
 .filter {
     padding-top: 2rem;
     padding-left: 4rem;

@@ -145,6 +145,14 @@ span {
   color: deeppink !important;
 }
 
+.filter-label {
+  padding-top: 1rem;
+}
+
+.filter {
+  margin-left: 2rem;
+}
+
 @media(max-width: 660px) {
  
   .header {

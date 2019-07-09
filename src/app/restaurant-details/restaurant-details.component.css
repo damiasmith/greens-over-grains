@@ -64,6 +64,10 @@
     line-height: 2.4;
 }
 
+.searchbar {
+    line-height: 3; 
+}
+
 .card-2 {
     font-family: 'Roboto', sans-serif;
     width: 65%;
@@ -93,6 +97,15 @@ span {
     color: deeppink !important;
 }
 
+.multiline {
+    white-space: pre-wrap;
+}
+
+a {
+    color: green;
+}
+
+
 @media(max-width: 660px) {
 
     .header {
@@ -114,7 +127,6 @@ span {
     .card-1 {
         position: relative;
         width: 100%;
-        padding-left: 0;
     }
 
     .card-2 {
@@ -146,7 +158,7 @@ span {
     h1 {
         padding-right: 1rem;
         font-size: 2.4rem;
-    }  
+    } 
 }
 
   @media(max-width: 380px) {
@@ -165,4 +177,8 @@ span {
         padding-right: 0;
         font-size: 2.1rem;
     } 
+     
+    ul {
+        padding-left: 1rem;
+    }
 }

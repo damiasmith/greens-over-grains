@@ -10,10 +10,11 @@
         <div class="row"> 
           <div class="col-sm-10">
             <div class="side">
-              <div class="searchbar">
+              <div class="searchbar text-center">
                 <app-searchbar></app-searchbar>
               </div>
-              <div class="map">
+              <div class="map-background text-center">
+                <div class="map">
                 <agm-map 
                   [latitude]="lat"
                   [longitude]="lng"
@@ -29,7 +30,7 @@
                     [label]="" 
                     (click)="onClick(infoWindow, $event)">
           
-                    <agm-info-window [disableAutoPan]="false" #infoWindow>
+                    <agm-info-window [disableAutoPan]="false" #infoWindow> 
                       <div> 
                         <a [routerLink]="['/restaurant-details', m.id]">
                           {{m.label}}
@@ -38,6 +39,7 @@
                     </agm-info-window>
                   </agm-marker>
                 </agm-map>
+              </div>
               </div>
             </div>
           </div>
@@ -57,7 +59,8 @@
                 {{restaurant.restaurantName}} 
                 </a> 
                 <br> 
-                {{restaurant.phoneNumber}} <br> 
+                <div class="multiline">{{restaurant?.address.join(', \n')}} 
+                </div> 
                 <a 
                 href="{{restaurant.website}}">{{restaurant.website}}
                 </a>

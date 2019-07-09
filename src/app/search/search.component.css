@@ -53,6 +53,7 @@
     font-size:200%;
     line-height:1.5;  
 }
+
 .searchbar {
     padding-top: 2rem;
 }
@@ -64,6 +65,7 @@ li {
     font-size:100%;
     line-height:1.5;
     list-style: none;
+    z-index: 1;
 }
 
 span {
@@ -80,6 +82,14 @@ span {
 
 .checked, .checked ~ span {
     color: deeppink !important;
+}
+
+a {
+    color: green;
+}
+
+.multiline {
+    white-space: pre-wrap;
 }
 
 @media(max-width: 660px) {
