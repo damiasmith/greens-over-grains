@@ -24,8 +24,8 @@ export class AddReviewComponent implements OnInit {
     {name: 'lactose-free', selected: false, id: 5}
   ];
 
-  foodItems: FoodItem[] = [];
-  restaurants: Restaurant[] = [];
+  foodItems = [];
+  restaurants = [];
 
   submitted = false;
 
