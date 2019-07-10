@@ -16,7 +16,9 @@
           <div *ngFor="let result of results" class="results"> 
             <li *ngIf="result.itemName"> 
               {{result.itemName}} <br> 
-              {{result.restaurantName}} <br> 
+              <a [routerLink]="['/restaurant-details', result.id]">
+                {{result.restaurantName}} 
+            </a>  <br> 
               {{ (result.filters.join(', ')) }} <br>
               <span *ngFor="let i of [5, 4, 3, 2, 1]" 
                 [ngClass]="{checked: result.rating==i}"> ★ {{i}} 
@@ -25,11 +27,7 @@
             <li *ngIf="result.address">
               <a [routerLink]="['/../restaurant-details', result.id]">{{result.restaurantName}} 
              </a> <br>
-             <div class="multiline">{{result.address.join(', \n')}} 
-             </div>
               {{result.phoneNumber}} <br> 
-              <div class="multiline">{{ (result.hours.join(', \n')) }}
-              </div> 
               <a href="{{result.website}}">{{result.website}}
               </a>
             </li>

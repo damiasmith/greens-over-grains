@@ -36,19 +36,37 @@
       <div class="card-block">
         <div class="row container"> 
           <div class="col-sm-12">
-            <ul>
+            <div class="d-flex flex-row justify-content-center">
+            <ul class="restaurant">
               <li>
-                {{restaurant?.restaurantName}}  <br> 
-                <div class="multiline">{{restaurant?.address.join(', \n')}} 
+                <h4 class="text-center">
+                {{restaurant?.restaurantName}}  
+                </h4>
+                <br> 
+                <div>Address:</div>
+                <div class="multiline indent">{{restaurant?.address.join(', \n')}} 
                 </div> 
-                {{restaurant?.phoneNumber}} <br> 
-                <div class="multiline">{{restaurant?.hours.join(', \n')}} </div> 
-                <a 
+                <br> 
+                <div>Phone:</div>
+                <div class="indent">
+                  {{restaurant?.phoneNumber}} 
+                </div>
+                <br> 
+                <div>Hours:</div>
+                <div class="multiline indent">{{restaurant?.hours.join(', \n')}}
+                </div> 
+                <br> 
+                <div>Website:</div>
+                <a class="indent"
                 href="{{restaurant.website}}">{{restaurant.website}}
                 </a>
               </li>
             </ul>
-            <ul *ngFor="let item of displayFoodItems">
+            </div>
+            <h4 
+              class='text-center'>Reviews:</h4>
+            <ul *ngFor="let item of displayFoodItems"
+            class='review'>
               <li>
                  {{item?.itemName}}  <br> 
                  {{item?.restaurantName}} <br>

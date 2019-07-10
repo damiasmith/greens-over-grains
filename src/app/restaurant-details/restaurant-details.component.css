@@ -35,6 +35,7 @@
 .display-4 {
     font-family: 'Open', sans-serif;
     color: white;
+    position: relative;
     z-index: 2;
     text-shadow:
     -1px -1px 0 #000,
@@ -81,16 +82,20 @@ li {
     list-style: none;
 }
 
+.indent {
+    padding-left: 2rem;
+}
+
 span {
     float: right;
     text-align: center;
-    width:1em;
-    padding:0.1em;
-    overflow:hidden;
-    white-space:nowrap;
-    font-size:200%;
-    line-height:1.2;
-    color:#ddd;
+    width: 1em;
+    padding: 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
 }
 
 .checked, .checked ~ span {
