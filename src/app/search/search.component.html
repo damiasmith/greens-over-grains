@@ -6,15 +6,15 @@
     </div>
     <div class="container">
       <ul>
-        <div *ngIf="results.length === 0; else notEmpty" class="text-center not-found">
+        <div *ngIf="results?.length === 0; else notEmpty" class="text-center not-found">
           No Results Found
-          <div class ="searchbar">
+          <div class="searchbar text-center">
             <app-searchbar></app-searchbar>
-          </div>
+          </div>  
         </div>
         <ng-template #notEmpty>
           <div *ngFor="let result of results" class="results"> 
-            <li *ngIf="result.itemName"> 
+            <li *ngIf="result?.itemName"> 
               {{result?.itemName}} <br> 
               <a [routerLink]="['/restaurant-details', result.restaurantId]"> 
                 {{restaurants[result?.restaurantId]?.restaurantName}} 
@@ -24,13 +24,11 @@
                 [ngClass]="{checked: result.rating==i}"> ★ {{i}} 
               </span>
             </li>
-            <li *ngIf="result.address">
-              <a [routerLink]="['/restaurant-details', restaurants._id]">{{result.restaurantName}} 
+            <li *ngIf="result?.address">
+              <a [routerLink]="['/restaurant-details', result?._id]">{{result.restaurantName}} 
              </a> <br>
-              {{result?.address}} <br> 
               {{result?.phoneNumber}} <br> 
-              {{ (result?.hours) }} <br> 
-              <a href="{{result.website}}">{{result?.website}}
+              <a href="{{result?.website}}">{{result?.website}}
               </a>
             </li>
           </div> 

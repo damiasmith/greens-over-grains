@@ -20,49 +20,49 @@ export class MapViewComponent implements OnInit {
 
   markers: Marker[] = [
     {
-      id: 101,
+      id: '5d054e897c056ffd40d62313',
       lat: 38.620771,
       lng: -90.224258,
       label: 'Lona’s LiL Eats',
       draggable: false
     },
     {
-      id: 102,
+      id: '5d054e897c056ffd40d62314',
       lat: 38.598995,
       lng: -90.242711,
       label: 'Meskerem',
       draggable: false
     },
     {
-      id: 103,
+      id: '5d054e897c056ffd40d62315',
       lat: 38.599454,
       lng: -90.242853,
       label: 'Pho Grand',
       draggable: false
     },
     {
-      id: 104,
+      id: '5d054e897c056ffd40d62316',
       lat: 38.593029,
       lng: -90.222187,
       label: 'The Mudhouse',
       draggable: false
     },
     {
-      id: 105,
+      id: '5d054e897c056ffd40d62317',
       lat: 38.627324,
       lng: -90.253191,
       label: 'Rise Coffee House',
       draggable: false
     },
     {
-      id: 106,
+      id: '5d054e897c056ffd40d62318',
       lat: 38.594040,
       lng: -90.230209,
       label: 'La Vallesana',
       draggable: false
     },
     {
-      id: 107,
+      id: '5d054e897c056ffd40d62319',
       lat: 38.610859,
       lng: -90.203102,
       label: 'Mission Taco Joint - Soulard',
@@ -77,8 +77,7 @@ export class MapViewComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantInfoService.getRestaurants()
-    .subscribe(restaurantsInfo => { this.restaurantsInfo = restaurantsInfo,
-      console.log(restaurantsInfo);
+    .subscribe(restaurantsInfo => { this.restaurantsInfo = restaurantsInfo;
     });
   }
 
@@ -88,7 +87,7 @@ export class MapViewComponent implements OnInit {
 }
 
 interface Marker {
-  id: number;
+  id: any;
   lat: number;
   lng: number;
   label?: string;

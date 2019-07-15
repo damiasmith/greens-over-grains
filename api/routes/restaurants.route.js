@@ -24,7 +24,6 @@ restaurantRoutes.route('/').get(function (req, res) {
     }
     else {
       res.json(restaurants);
-      console.log(restaurants);
     }
   });
 });

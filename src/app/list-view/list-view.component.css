@@ -32,7 +32,8 @@
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 0;
-    z-index: 2;
+    position: relative;
+    z-index: 1;
 }
 
 .display-4 {
@@ -47,9 +48,10 @@
 
 .card-1 { 
     font-family: 'Roboto', sans-serif;
-    width: 35%;
+    width: 38%;
     padding-top: 2rem;
     padding-left: 1rem;
+    color: darkslategray;
 }
 
 .sidenav {
@@ -60,15 +62,21 @@
     width: 50%; 
 }
 
+.searchbar {
+    line-height: 3; 
+}
+
 .filter {
     padding-top: 2rem;
     padding-left: 4rem;
     line-height: 2.4;
+    color: darkslategray;
 }
 
 .card-2 {
     font-family: 'Roboto', sans-serif;
-    width: 65%;
+    width: 60%;
+    color: darkslategray;
 }
  
 li { 

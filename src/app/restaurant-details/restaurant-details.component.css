@@ -30,6 +30,8 @@
 
 .header {
     padding: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .display-4 {
@@ -45,9 +47,15 @@
 
 .card-1 { 
     font-family: 'Roboto', sans-serif;
-    width: 35%;
+    width: 38%;
     padding-top: 2rem;
     padding-left: 1rem;
+    color: darkslategray;
+}
+
+.searchbar {
+    text-align: center;
+    line-height: 3; 
 }
 
 .sidenav {
@@ -66,7 +74,20 @@
 
 .card-2 {
     font-family: 'Roboto', sans-serif;
-    width: 65%;
+    width: 60%;
+}
+
+h4 {
+    color: grey;
+    padding-left: 0;
+}
+
+.review {
+    padding-left: 2rem; 
+}
+
+ul {
+    padding: 0;
 }
 
 li { 
@@ -75,6 +96,7 @@ li {
     font-size: 100%;
     line-height: 1.5;
     list-style: none;
+    color: darkslategray
 }
 
 span {
@@ -96,6 +118,12 @@ a {
 .checked, .checked ~ span {
     color: deeppink !important;
 }
+
+.multiline {
+    white-space: pre-wrap;
+}
+
+
 
 @media(max-width: 660px) {
 
@@ -133,7 +161,6 @@ a {
     } 
 
     li { 
-        padding-left: 0;
         padding-right: 0;
         padding-top: 2rem;
     }

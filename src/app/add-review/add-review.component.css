@@ -31,6 +31,8 @@
   padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .display-4 {
@@ -43,15 +45,7 @@
   1px 1px 0 #000; 
 }
 
-.display-5 {
-  font-family: 'Open Sans', sans-serif;
-  color: white;
-  text-shadow:
-  -1px -1px 0 #000,
-  1px -1px 0 #000,
-  -1px 1px 0 #000,
-  1px 1px 0 #000; 
-}
+
 
 .text {
   width: 50%;
@@ -60,6 +54,7 @@
 
 .card-1 {
   width: 30%;
+  color: darkslategray;
 }
 
 .card-2 {
@@ -68,6 +63,7 @@
   padding-top: 2rem;
   padding-left: 0; 
   padding-right: 0;
+  color: darkslategray;
 }
 
 .checkbox {
@@ -160,6 +156,14 @@ span {
   h1 {
     padding-right: 1rem;
     font-size: 2.8rem;
+  }
+
+  .filter-label {
+    padding-top: 1rem;
+  }
+  
+  .filter {
+    margin-left: 2rem;
   }
 }
 

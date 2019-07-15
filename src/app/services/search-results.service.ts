@@ -24,7 +24,7 @@ export class SearchResultsService implements OnInit {
   search(value: string) {
     let results = [];
     let restaurants = [];
-    let restaurant = [];
+    let restaurantId = [];
     let foodItems = [];
 
     combineLatest (
@@ -32,7 +32,7 @@ export class SearchResultsService implements OnInit {
       this.addFoodItemService.getFoodItems()
     )
     .subscribe(([restaurantsInfo, addFoodItems]) => {
-      restaurant = restaurantsInfo.reduce((accumulator, current) => {
+      restaurantId = restaurantsInfo.reduce((accumulator, current) => {
         accumulator[current._id] = current;
         return accumulator;
       }, {});
@@ -42,8 +42,8 @@ export class SearchResultsService implements OnInit {
       for (let foodItem of foodItems) {
         if (foodItem.itemName.toLowerCase() === value.toLowerCase()) {
             results.push( foodItem );
-        } else if ( foodItem.filters.find(filter => filter.toLowerCase() === value.toLowerCase())) {
-            results.push( foodItem )
+        } else if (foodItem.filters.find(filter => filter.toLowerCase() === value.toLowerCase())) {
+            results.push( foodItem );
         }
       }
       for (let restaurant of restaurants) {
@@ -53,11 +53,10 @@ export class SearchResultsService implements OnInit {
       }
 
       for (let foodItem of foodItems) {
-        if (restaurant[foodItem.restaurantId].restaurantName.toLowerCase() === value.toLowerCase()) {
+        if (restaurantId[foodItem.restaurantId].restaurantName.toLowerCase() === value.toLowerCase()) {
           results.push( foodItem );
         }
         this.searchResults.next(results);
-        console.log(results);
       }
     });
   }

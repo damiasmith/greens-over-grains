@@ -2,14 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Restaurants = new Schema({
-  
+
   restaurantName: {
     type: String
   },
   address: {
-    type: String
+    type: Array
   },
   hours: {
+    type: Array
+  },
+  phoneNumber: {
     type: String
   },
   website: {

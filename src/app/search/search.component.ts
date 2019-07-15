@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit {
         accumulator[current._id] = current;
         return accumulator;
       }, {});
-      console.log(this.restaurants);
       this.results = results;
     });
   }

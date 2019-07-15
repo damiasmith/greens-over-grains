@@ -24,10 +24,12 @@
 
 .left {
     text-align: left;
+    margin-bottom: 0;
 }
 
 .right {
     text-align: right;
+    margin-bottom: 0;
 }
 
 ul {
