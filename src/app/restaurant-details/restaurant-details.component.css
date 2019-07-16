@@ -49,6 +49,7 @@
     width: 35%;
     padding-top: 2rem;
     padding-left: 1rem;
+    color: darkslategray;
 }
 
 .sidenav {
@@ -72,6 +73,19 @@
 .card-2 {
     font-family: 'Roboto', sans-serif;
     width: 65%;
+    color: darkslategray;
+}
+
+h4 {
+    color:darkgrey;
+}
+
+.review {
+    padding-left: 2rem;
+}
+
+ul{
+    padding-left: 0;
 }
 
 li { 
@@ -95,7 +109,7 @@ span {
     white-space: nowrap;
     font-size: 200%;
     line-height: 1.2;
-    color: #ddd;
+    color: lightpink;
 }
 
 .checked, .checked ~ span {

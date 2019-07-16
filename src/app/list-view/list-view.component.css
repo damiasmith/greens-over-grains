@@ -51,6 +51,7 @@
     width: 38%;
     padding-top: 2rem;
     padding-left: 1rem;
+    color: darkslategray;
 }
 
 .sidenav {
@@ -74,6 +75,7 @@
 .card-2 {
     font-family: 'Roboto', sans-serif;
     width: 60%;
+    color: darkslategray;
 }
  
 li { 
@@ -127,6 +129,7 @@ span {
         position: relative;
         width: 100%;
         z-index: 1;
+        color: darkslategray;
     }
 
     .searchbar {
@@ -138,6 +141,7 @@ span {
     .card-2 {
         position: relative;
         width: 100%; 
+        color: darkslategray;
     }
 
     li { 
