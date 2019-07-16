@@ -52,7 +52,7 @@
             <ul>
               <li *ngFor="let restaurant of restaurantsInfo">
                 <a 
-                  [routerLink]="['/restaurant-details', restaurant._id]"
+                  [routerLink]="['/restaurant-details', restaurant._xid]"
                   >
                 {{restaurant.restaurantName}} 
                 </a> 

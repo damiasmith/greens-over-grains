@@ -3,18 +3,20 @@
     <nav class="navbar navbar-light bg-transparent searchbar"> 
       <div class="row">
         <form class="form-inline" [formGroup]="form" (ngSubmit)="onSubmit()">
-          <input #search
-            formControlName="search"
-            id="search" 
-            name="search" 
-            class="form-control xs 12" 
-            type="text" 
-            placeholder="Search">
-          <button 
-            type="button" 
-            (click)="onSubmit(search.value);" 
-            class="btn btn-outline-success"> 🔍
-          </button>
+          <div>
+            <input #search
+              formControlName="search"
+              id="search" 
+              name="search" 
+              class="form-control xs 12" 
+              type="text" 
+              placeholder="Search">
+            <button 
+              type="button" 
+              (click)="onSubmit(search.value);" 
+              class="btn btn-outline-success"> 🔍
+            </button>
+          </div>
         </form>
       </div>
     </nav>      
