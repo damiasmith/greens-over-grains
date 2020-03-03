@@ -9,7 +9,7 @@ restaurantRoutes.route('/').post(function (req, res) {
   let restaurant = new Restaurant(req.body);
   restaurant.save()
     .then(restaurant => {
-      res.status(200).json({'restaurant': 'restaurant in added successfully'});
+      res.status(200).json({'restaurant': 'restaurant is added successfully'});
     })
     .catch(err => {
     res.status(400).send("unable to save to database");

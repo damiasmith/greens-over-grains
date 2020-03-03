@@ -58,6 +58,10 @@
     width: 40%;
 }
 
+.searchbar {
+    line-height: 3; 
+}
+
 .card-2 {
     font-family: 'Roboto', sans-serif;
     width: 40%;

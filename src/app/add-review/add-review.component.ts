@@ -5,8 +5,6 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FoodItem } from '../services/food-item.interface';
-import { Restaurant } from '../services/restaurant.interface';
 
 @Component({
   selector: 'app-add-review',

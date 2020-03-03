@@ -40,7 +40,7 @@ export class SearchResultsService implements OnInit {
       foodItems = addFoodItems;
 
       for (let foodItem of foodItems) {
-        if (foodItem.itemName.toLowerCase() === value.toLowerCase()) {
+        if (foodItem.itemName && foodItem.itemName.toLowerCase() === value.toLowerCase()) {
             results.push( foodItem );
         } else if (foodItem.filters.find(filter => filter.toLowerCase() === value.toLowerCase())) {
             results.push( foodItem );

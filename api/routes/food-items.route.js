@@ -9,7 +9,7 @@ foodItemRoutes.route('/').post(function (req, res) {
   let foodItem = new FoodItem(req.body);
   foodItem.save()
     .then(foodItem => {
-      res.status(200).json({'foodItem': 'fooditem in added successfully'});
+      res.status(200).json({'foodItem': 'fooditem is added successfully'});
     })
     .catch(err => {
     res.status(400).send("unable to save to database");
