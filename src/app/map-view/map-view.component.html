@@ -30,7 +30,7 @@
                     [label]="" 
                     (click)="onClick(infoWindow, $event)">
           
-                    <agm-info-window [disableAutoPan]="false" #infoWindow> 
+                    <agm-info-window [disableAutoPan]="false" class="infoWindow" > 
                       <div> 
                         <a [routerLink]="['/restaurant-details', m.id]">
                           {{m.label}}

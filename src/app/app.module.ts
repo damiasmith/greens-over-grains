@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RatingModule } from 'ng-starrating';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +44,6 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    RatingModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
