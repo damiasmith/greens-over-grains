@@ -102,6 +102,9 @@ a {
 .multiline {
     white-space: pre-wrap;
 }
+.btn {
+    color: lightpink !important
+}
 
 @media(max-width: 660px) {
 
