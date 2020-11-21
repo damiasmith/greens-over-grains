@@ -3,12 +3,11 @@ import { SearchResultsService } from '..//services/search-results.service';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 
-
-
 @Component ({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.css']
+  styleUrls: ['./searchbar.component.css'],
+  providers: [SearchResultsService]
 })
 
 export class SearchbarComponent implements OnInit {

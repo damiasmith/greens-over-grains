@@ -54,9 +54,9 @@
           <div class="form-group row">
             <label class="col-sm-4 form-control-label filter-label">Filter</label> 
               <div formArrayName="filters">
-                <div *ngFor="let filter of form?.controls['filters'].controls; let i=index">
+                <div *ngFor="let filter of form.controls.filters['controls']; let i=index">
                   <div class="form-check form-group row"> 
-                    <label class="form-check-labe filter">
+                    <label class="form-check-label filter">
                       <input 
                         type="checkbox" 
                         [formControl]="filter" 

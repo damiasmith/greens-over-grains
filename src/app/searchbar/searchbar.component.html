@@ -2,7 +2,7 @@
   <div class="d-flex flex-row justify-content-center">
     <nav class="navbar navbar-light bg-transparent searchbar"> 
       <div class="row">
-        <form class="form-inline" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form class="form-inline" [formGroup]="form" (ngSubmit)="onSubmit(search.value)">
           <div>
           <input #search
             formControlName="search"

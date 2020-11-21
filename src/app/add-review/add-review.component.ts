@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
@@ -33,12 +34,13 @@ export class AddReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = this.fb.group ({
+    this.form = this.fb.group({
       itemName: ['', Validators.required],
       id: ['', Validators.required],
       filters: this.addCheckboxes(),
       rating: ['', Validators.required]
     });
+    console.log(this.form);
 
     combineLatest (
       this.restaurantInfoService.getRestaurants(),
@@ -52,9 +54,10 @@ export class AddReviewComponent implements OnInit {
 
  addCheckboxes() {
     const arr = this.filters.map(filter => {
-      return this.fb.control(filter.selected);
+      return new FormControl(filter.selected || false);
     });
-    return this.fb.array(arr);
+    console.log(arr);
+    return new FormArray(arr);
   }
 
   addFilters(selected: boolean[]) {
@@ -66,7 +69,7 @@ export class AddReviewComponent implements OnInit {
   getName(id) {
     id = this.form.controls.id.value;
     console.log(id);
-    let displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
+    const displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
     if (displayRestaurant) {
       console.log(displayRestaurant);
       return displayRestaurant;
@@ -81,6 +84,7 @@ export class AddReviewComponent implements OnInit {
       return;
     } else if (this.form.valid) {
       const foodItem = this.form.value;
+      console.log(this.filters)
       this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
         restaurantName: this.getName(foodItem.id)});
       this.form.reset();
