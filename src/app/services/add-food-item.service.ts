@@ -7,6 +7,8 @@ import { of } from 'rxjs';
 })
 
 export class AddFoodItemService {
+  searchValue;
+
   private meals: FoodItem[] = [
     {
       id: '101',
@@ -107,4 +109,11 @@ export class AddFoodItemService {
     this.meals.push(item);
     this.newMeals.push(item);
    }
-}
+   
+   search(value:string) {
+    this.searchValue = value;
+    console.log(this.searchValue);
+    return of(this.searchValue);
+   }
+   
+};

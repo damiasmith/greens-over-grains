@@ -20,8 +20,9 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { MapViewComponent } from './map-view/map-view.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddFoodItemService } from './services/add-food-item.service';
-import { SearchComponent } from './search/search.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { FilterPipe } from './services/filter.pipe';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -36,26 +37,19 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     RestaurantDetailsComponent,
     MapViewComponent,
     SignUpComponent,
-    SearchComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
+    NgbModule,
     AgmCoreModule.forRoot({
       apiKey: ''
     }),
     RouterModule.forRoot([
-      {
-        path: 'search',
-        component:
-        SearchComponent
-      },
       {
         path: 'restaurant-details/:id',
         component:

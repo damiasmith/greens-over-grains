@@ -7,6 +7,8 @@ import { of } from 'rxjs';
 })
 
 export class RestaurantInfoService {
+  searchValue;
+
   private restaurantsArray: Restaurant[] = [
   {
     id: '101',
@@ -75,4 +77,9 @@ export class RestaurantInfoService {
     return of(this.restaurantsArray.find(restaurant => restaurant.id === id));
   }
 
+  search(value:string) {
+    this.searchValue = value;
+    console.log(this.searchValue);
+    return of(this.searchValue);
+   }
 }
