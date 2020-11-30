@@ -112,7 +112,6 @@ export class AddFoodItemService {
    
    search(value:string) {
     this.searchValue = value;
-    console.log(this.searchValue);
     return of(this.searchValue);
    }
    

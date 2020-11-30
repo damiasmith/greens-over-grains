@@ -1,4 +1,3 @@
-import { Url } from 'url';
 
 export interface Restaurant {
     id: string;

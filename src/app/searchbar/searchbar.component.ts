@@ -2,26 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
 import { combineLatest } from 'rxjs';
-import { FilterPipe } from '../services/filter.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
 import { FormControl, Validators } from '@angular/forms';
-import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component ({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.css'],
-  providers: [AddFoodItemService]
 })
 
 export class SearchbarComponent implements OnInit {
-  searchField: FormControl;
+  searchField;
   foodItems;
   restaurants;
   searchValue;
-
-  title = 'searchResults';
-  
-  closeResult: string;
 
   constructor(
     private addFoodItemService: AddFoodItemService,
@@ -30,12 +25,12 @@ export class SearchbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchField = new FormControl();
+      this.searchField = new FormControl('', Validators.required);
   
-    combineLatest (
+    combineLatest ([
       this.restaurantInfoService.getRestaurants(),
       this.addFoodItemService.getFoodItems()
-    )
+    ])
     .subscribe(([restaurants, foodItems]) => {
       this.restaurants = restaurants;
       this.foodItems = foodItems;
@@ -47,6 +42,14 @@ export class SearchbarComponent implements OnInit {
   }
 
   open(content) { 
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+    if (this.searchField.invalid) {
+      return;
+    } else if (this.searchField.valid) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}) 
+    }
+  }
+
+  close() {
+    this.searchField.reset();
   }
 }

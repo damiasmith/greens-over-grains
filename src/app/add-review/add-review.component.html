@@ -14,7 +14,8 @@
             <label 
               for="inputFoodItem"   
               class="col-sm-4 form-control-label">
-              Food Item</label> 
+              Food Item
+            </label> 
             <div class="col-sm-8">
               <input 
                 formControlName="itemName" 
@@ -23,6 +24,7 @@
                 id="itemName" 
                 placeholder="Food Item"
                 [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }">
+          
                 <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
                   <div *ngIf="f.itemName.errors.required">
                     Food Item is required
@@ -134,10 +136,41 @@
             </div>
 
             <div class="form-group row add">
-              <div class="col-sm-10 ">
-                <button class="btn btn-success" (click)="onAdd()">Add Item</button>
+              <div class="col-sm-10">
+                <button class="btn btn-success" (click)="onAdd();" (click)="open(mymodal);" >Add Item</button>
               </div>
             </div>
+
+            <ng-template #mymodal let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Added Item</h4>
+              </div>
+              <div class="modal-body">
+                <div class="results"> 
+                  <li> 
+                    {{form.value.itemName}} <br> 
+                    <a 
+                    [routerLink]="['/restaurant-details', form.value.id]" (click)="modal.dismiss()">
+                    {{getName(form.value.id)}}
+                  </a>  <br> 
+                    {{addFilters(form.value.filters)}} <br>
+                    <span class="star" *ngFor="let i of [5, 4, 3, 2, 1]" 
+                      [ngClass]="{checked: form.value.rating==i}"> ★ {{i}} 
+                    </span>
+                  </li>
+                </div>
+                <h4 class="modal-link" >
+                  <a [routerLink]="['/list-view']" (click)="close()" (click)="modal.dismiss()">
+                   See All Items
+                  </a>
+                </h4>
+              </div> 
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" class="close" aria-label="Close" (click)="modal.dismiss()" (click)="close()">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            </ng-template>
           </div>
         </form>
      </div>

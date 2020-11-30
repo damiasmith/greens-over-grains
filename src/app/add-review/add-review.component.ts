@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-review',
@@ -25,11 +26,13 @@ export class AddReviewComponent implements OnInit {
   displayFoodItems = [];
   restaurants = [];
   submitted = false;
+  closed = false;
 
   constructor(
     private addFoodItemService: AddFoodItemService,
     private restaurantInfoService: RestaurantInfoService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NgbModal
     ) {
   }
 
@@ -40,12 +43,12 @@ export class AddReviewComponent implements OnInit {
       filters: this.addCheckboxes(),
       rating: ['', Validators.required]
     });
-    console.log(this.form);
+    console.log('form', this.form);
 
-    combineLatest (
+    combineLatest ([
       this.restaurantInfoService.getRestaurants(),
       this.addFoodItemService.getFoodItems()
-    )
+    ])
     .subscribe(([restaurants, foodItems]) => {
       this.restaurants = restaurants;
       this.foodItems = foodItems;
@@ -56,7 +59,7 @@ export class AddReviewComponent implements OnInit {
     const arr = this.filters.map(filter => {
       return new FormControl(filter.selected || false);
     });
-    console.log(arr);
+    console.log('arr', arr);
     return new FormArray(arr);
   }
 
@@ -68,13 +71,15 @@ export class AddReviewComponent implements OnInit {
 
   getName(id) {
     id = this.form.controls.id.value;
-    console.log(id);
-    const displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
-    if (displayRestaurant) {
-      console.log(displayRestaurant);
-      return displayRestaurant;
-   } else {
-      return '';
+    if (id) {
+      console.log(id);
+      const displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
+      if (displayRestaurant) {
+        console.log(displayRestaurant);
+        return displayRestaurant;
+    } else {
+        return '';
+      }
     }
   }
 
@@ -82,13 +87,28 @@ export class AddReviewComponent implements OnInit {
     this.submitted = true;
     if (this.form.invalid) {
       return;
-    } else if (this.form.valid) {
+    } else 
+    if (this.form.valid) {
       const foodItem = this.form.value;
-      console.log(this.filters)
+      console.log(this.filters);
       this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
         restaurantName: this.getName(foodItem.id)});
-      this.form.reset();
       this.submitted = !this.submitted;
+    }
+  }
+
+  open(content) { 
+    if (this.form.invalid) {
+      return;
+    } else if (this.form.valid) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}) 
+    }
+  }
+
+  close() {
+    if (this.closed == false) {
+      this.closed = true;
+      this.form.reset();
     }
   }
 }

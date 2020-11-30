@@ -1,6 +1,5 @@
 
 
-
 export interface FoodItem {
     id?: string;
     itemName: string;
