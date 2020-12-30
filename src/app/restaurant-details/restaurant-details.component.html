@@ -37,36 +37,34 @@
         <div class="row container"> 
           <div class="col-sm-12">
             <div class="d-flex flex-row justify-content-center">
-              <ul>
-                <li>
-                  <h4>
-                  {{restaurant?.restaurantName}}  
-                  </h4>
-                  <br> 
-                  <div>Address:</div>
-                  <div class="multiline indent">{{restaurant?.address.join(', \n')}} 
-                  </div> 
-                  <br> 
-                  <div>Phone:</div>
-                  <div class="indent">
-                    {{restaurant?.phoneNumber}} 
-                  </div>
-                  <br> 
-                  <div>Hours:</div>
-                  <div class="multiline indent">{{restaurant?.hours.join(', \n')}}
-                  </div> 
-                  <br> 
-                  <div>Website:</div>
-                  <a class="indent"
-                  href="{{restaurant?.website}}">{{restaurant?.website}}
-                  </a>
-                </li>
-              </ul>
+            <ul class="restaurant">
+              <li>
+                <h4>
+                {{restaurant?.restaurantName}}  
+                </h4>
+                <br> 
+                <div>Address:</div>
+                <div class="multiline">{{restaurant?.address.join(', \n')}} 
+                </div> 
+                <br> 
+                <div>Phone:</div>
+                <div>
+                  {{restaurant?.phoneNumber}} 
+                </div>
+                <br> 
+                <div>Hours:</div>
+                <div class="multiline">{{restaurant?.hours.join(', \n')}}
+                </div> 
+                <br> 
+                <div>Website:</div>
+                <a 
+                href="{{restaurant.website}}">{{restaurant.website}}
+                </a>
+              </li>
+            </ul>
             </div>
-            <div>
             <h4 class='review'>Reviews</h4>
-            <ul *ngFor="let item of displayFoodItems"
-                class='review'>
+            <ul *ngFor="let item of displayFoodItems">
               <li>
                 {{item?.itemName}}  <br> 
                 {{restaurants[item.restaurantId]?.restaurantName}}  <br>

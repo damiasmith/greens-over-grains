@@ -33,7 +33,7 @@
     padding-bottom: 0;
     margin-bottom: 0;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .display-4 {
@@ -129,6 +129,8 @@ span {
     .card-1 {
         position: relative;
         width: 100%;
+        z-index: 1;
+        color: darkslategray;
     }
 
     .searchbar {
@@ -140,6 +142,7 @@ span {
     .card-2 {
         position: relative;
         width: 100%; 
+        color: darkslategray;
     }
 
     li { 
