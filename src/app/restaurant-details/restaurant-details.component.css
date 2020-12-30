@@ -35,6 +35,7 @@
 .display-4 {
     font-family: 'Open', sans-serif;
     color: white;
+    position: relative;
     z-index: 2;
     text-shadow:
     -1px -1px 0 #000,
@@ -48,6 +49,7 @@
     width: 35%;
     padding-top: 2rem;
     padding-left: 1rem;
+    color: darkslategray;
 }
 
 .sidenav {
@@ -64,9 +66,26 @@
     line-height: 2.4;
 }
 
+.searchbar {
+    line-height: 3; 
+}
+
 .card-2 {
     font-family: 'Roboto', sans-serif;
     width: 65%;
+    color: darkslategray;
+}
+
+h4 {
+    color:darkgrey;
+}
+
+.review {
+    padding-left: 2rem;
+}
+
+ul{
+    padding-left: 0;
 }
 
 li { 
@@ -77,16 +96,20 @@ li {
     list-style: none;
 }
 
+.indent {
+    padding-left: 2rem;
+}
+
 span {
     float: right;
     text-align: center;
-    width:1em;
-    padding:0.1em;
-    overflow:hidden;
-    white-space:nowrap;
-    font-size:200%;
-    line-height:1.2;
-    color:#ddd;
+    width: 1em;
+    padding: 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 200%;
+    line-height: 1.2;
+    color: lightpink;
 }
 
 a {
@@ -96,6 +119,15 @@ a {
 .checked, .checked ~ span {
     color: deeppink !important;
 }
+
+.multiline {
+    white-space: pre-wrap;
+}
+
+a {
+    color: green;
+}
+
 
 @media(max-width: 660px) {
 
@@ -118,7 +150,6 @@ a {
     .card-1 {
         position: relative;
         width: 100%;
-        padding-left: 0;
     }
 
     .card-2 {
@@ -150,7 +181,7 @@ a {
     h1 {
         padding-right: 1rem;
         font-size: 2.4rem;
-    }  
+    } 
 }
 
   @media(max-width: 380px) {
@@ -169,4 +200,8 @@ a {
         padding-right: 0;
         font-size: 2.1rem;
     } 
+     
+    ul {
+        padding-left: 1rem;
+    }
 }

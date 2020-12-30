@@ -7,6 +7,7 @@ import { HttpClient, HttpParams} from '@angular/common/http';
 })
 
 export class AddFoodItemService {
+  searchValue;
 
   uri = 'http://localhost:4000/food-items';
 
@@ -22,7 +23,7 @@ export class AddFoodItemService {
 
   constructor(private http: HttpClient) { }
 
-   getFoodItems(restaurantId?) {
+  getFoodItems(restaurantId?) {
     let params = new HttpParams();
     if (restaurantId) {
       params = params.set('restaurantId', restaurantId);
@@ -30,7 +31,7 @@ export class AddFoodItemService {
     return this.http.get(this.uri, {params});
    }
 
-   addFoodItems(itemName, restaurantId, filters, rating) {
+  addFoodItems(itemName, restaurantId, filters, rating) {
     const meals = {
       itemName,
       restaurantId,
@@ -39,8 +40,10 @@ export class AddFoodItemService {
     };
 
     console.log(restaurantId);
-
-    this.http.post(this.uri, meals)
-        .subscribe(res => console.log('Done'));
-  }
-}
+   
+  search(value:string) {
+    this.searchValue = value;
+    return of(this.searchValue);
+   }
+   
+};

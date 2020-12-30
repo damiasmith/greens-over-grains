@@ -31,6 +31,8 @@
   padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .display-4 {
@@ -68,6 +70,7 @@
   padding-top: 2rem;
   padding-left: 0; 
   padding-right: 0;
+  color: darkslategray;
 }
 
 .checkbox {
@@ -129,7 +132,7 @@ a {
   color: green;
 }
 
-span {
+.star {
   float: right;
   text-align: center;
   width:1em;
@@ -143,6 +146,23 @@ span {
 
 .checked, .checked ~ span {
   color: deeppink !important;
+}
+
+.filter-label {
+  padding-top: 1rem;
+}
+
+.filter {
+  margin-left: 2rem;
+}
+
+.button {
+  padding: 1rem;
+}
+
+.modal-link {
+  padding-top: 1rem;
+  padding-left: 2rem;
 }
 
 @media(max-width: 660px) {
@@ -198,6 +218,11 @@ span {
   .add {
     width: 60%;
   }
+
+  .text {
+    width: 50%;
+    text-align: center;
+  }
 }
 
 @media(max-width: 380px) {
@@ -211,6 +236,5 @@ span {
   h1 {
     padding-right: 1rem;
     font-size: 2.2rem;
-  }
-    
+  }   
 }

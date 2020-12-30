@@ -1,12 +1,10 @@
-
-import { Component, OnInit} from '@angular/core';
-
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
-import { FoodItem } from '../services/food-item.interface';
-import { Restaurant } from '../services/restaurant.interface';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-review',
@@ -28,26 +26,29 @@ export class AddReviewComponent implements OnInit {
   restaurants = [];
 
   submitted = false;
+  closed = false;
 
   constructor(
     private addFoodItemService: AddFoodItemService,
     private restaurantInfoService: RestaurantInfoService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NgbModal
     ) {
   }
 
   ngOnInit() {
-    this.form = this.fb.group ({
+    this.form = this.fb.group({
       itemName: ['', Validators.required],
       restaurantId: ['', Validators.required],
       filters: this.addCheckboxes(),
       rating: ['', Validators.required]
     });
+    console.log('form', this.form);
 
-    combineLatest (
+    combineLatest ([
       this.restaurantInfoService.getRestaurants(),
       this.addFoodItemService.getFoodItems()
-    )
+    ])
     .subscribe(([restaurants, foodItems]) => {
       this.restaurants = restaurants;
       this.foodItems = foodItems;
@@ -56,9 +57,10 @@ export class AddReviewComponent implements OnInit {
 
  addCheckboxes() {
     const arr = this.filters.map(filter => {
-      return this.fb.control(filter.selected);
+      return new FormControl(filter.selected || false);
     });
-    return this.fb.array(arr);
+    console.log('arr', arr);
+    return new FormArray(arr);
   }
 
   addFilters(selected: boolean[]) {
@@ -66,7 +68,19 @@ export class AddReviewComponent implements OnInit {
     ).map(filter => filter.name);
   }
 
-  get f() { return this.form.controls; }
+  getName(id) {
+    id = this.form.controls.id.value;
+    if (id) {
+      console.log(id);
+      const displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
+      if (displayRestaurant) {
+        console.log(displayRestaurant);
+        return displayRestaurant;
+    } else {
+        return '';
+      }
+    }
+  }
 
   onAdd(itemName, restaurantId, filters, rating) {
     this.submitted = true;
@@ -76,11 +90,28 @@ export class AddReviewComponent implements OnInit {
     rating = this.form.controls.rating.value;
     if (this.form.invalid) {
       return;
-    } else if (this.form.valid)  {
-      filters = this.addFilters(filters);
-      this.addFoodItemService.addFoodItems(itemName, restaurantId, filters, rating);
-      this.form.reset();
+    } else 
+    if (this.form.valid) {
+      const foodItem = this.form.value;
+      console.log(this.filters);
+      this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
+        restaurantName: this.getName(foodItem.id)});
       this.submitted = !this.submitted;
+    }
+  }
+
+  open(content) { 
+    if (this.form.invalid) {
+      return;
+    } else if (this.form.valid) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}) 
+    }
+  }
+
+  close() {
+    if (this.closed == false) {
+      this.closed = true;
+      this.form.reset();
     }
   }
 }

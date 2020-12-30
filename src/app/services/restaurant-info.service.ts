@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 })
 
 export class RestaurantInfoService {
+  searchValue;
 
   uri = 'http://localhost:4000/restaurants';
 
@@ -34,4 +35,9 @@ export class RestaurantInfoService {
         .subscribe(res => console.log('Done'));
   }
 
+  search(value:string) {
+    this.searchValue = value;
+    console.log(this.searchValue);
+    return of(this.searchValue);
+   }
 }

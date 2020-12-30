@@ -3,7 +3,6 @@ import { MouseEvent } from '@agm/core';
 import { RestaurantInfoService } from '../services/restaurant-info.service';
 import { AddFoodItemService } from '../services/add-food-item.service';
 import { Restaurant } from '../services/restaurant.interface';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map-view',

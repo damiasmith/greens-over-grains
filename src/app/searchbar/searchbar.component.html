@@ -2,20 +2,63 @@
   <div class="d-flex flex-row justify-content-center">
     <nav class="navbar navbar-light bg-transparent searchbar"> 
       <div class="row">
-        <form class="form-inline" [formGroup]="form" (ngSubmit)="onSubmit()">
-          <input #search
-            formControlName="search"
-            id="search" 
-            name="search" 
-            class="form-control mr-sm-12" 
-            type="text" 
-            placeholder="Search">
-          <button 
-            type="button" 
-            (click)="onSubmit(search.value);" 
-            class="btn btn-outline-success"> 🔍
-          </button>
+        <form class="form-inline" (ngSubmit)="onSubmit(search.value)">
+          <div>
+            <input #search
+              [formControl]="searchField"
+              id="search" 
+              name="search" 
+              class="form-control xs 12" 
+              type="text" 
+              placeholder="Search"
+              required>
+              <!-- <div *ngIf="searchField.invalid && searchField.dirty || searchField.touched"
+              class="alert alert-danger">
+              </div> -->
+            <button (click)="onSubmit(search.value);" (click)="open(mymodal);"
+              class="btn btn-outline-success" 
+              type="button"> 🔍
+            </button>
+          </div>
         </form>
+        <!-- <div *ngIf="items.length === 0; else notEmpty" class="text-center not-found">
+          No Results Found
+          
+        </div> -->
+        <!-- <ng-template #notEmpty> -->
+        <ng-template #mymodal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Search Results</h4>
+          </div>
+          <div class="modal-body">
+            <div *ngFor="let result of foodItems | appFilter: search.value" class="results"> 
+              <li *ngIf="result.itemName"> 
+                {{result.itemName}} <br> 
+                <a [routerLink]="['/restaurant-details', result.id]" (click)="modal.dismiss()">
+                  {{result.restaurantName}} 
+              </a>  <br> 
+                {{ (result.filters.join(', ')) }} <br>
+                <span class="star" *ngFor="let i of [5, 4, 3, 2, 1]" 
+                  [ngClass]="{checked: result.rating==i}"> ★ {{i}} 
+                </span>
+              </li>
+            </div>
+            <div *ngFor="let result of restaurants | appFilter: search.value" class="results"> 
+              <li *ngIf="result.address">
+                <a [routerLink]="['/../restaurant-details', result.id]" (click)="modal.dismiss()">{{result.restaurantName}} 
+              </a> <br>
+                {{result.phoneNumber}} <br> 
+                <a href="{{result.website}}">{{result.website}}
+                </a>
+              </li>
+            </div> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" class="close" aria-label="Close" (click)="modal.dismiss()" (click)="close()">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </ng-template>
       </div>
     </nav>      
   </div> 
