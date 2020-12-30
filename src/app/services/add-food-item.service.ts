@@ -115,12 +115,6 @@ export class AddFoodItemService {
 
     console.log(restaurantId);
 
-<<<<<<< HEAD
-    this.http.post(this.uri, meals)
-        .subscribe(res => console.log('Done'));
-  }
-}
-=======
    addFoodItems(item: FoodItem) {
     this.meals.push(item);
     this.newMeals.push(item);
@@ -132,4 +126,3 @@ export class AddFoodItemService {
    }
    
 };
->>>>>>> stackblitz
