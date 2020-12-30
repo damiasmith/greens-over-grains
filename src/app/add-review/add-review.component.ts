@@ -23,6 +23,7 @@ export class AddReviewComponent implements OnInit {
   ];
 
   foodItems = [];
+  displayFoodItems = [];
   restaurants = [];
 
   submitted = false;
@@ -68,6 +69,8 @@ export class AddReviewComponent implements OnInit {
     ).map(filter => filter.name);
   }
 
+  get f() { return this.form.controls; }
+
   getName(id) {
     id = this.form.controls.id.value;
     if (id) {
@@ -82,16 +85,14 @@ export class AddReviewComponent implements OnInit {
     }
   }
 
-  onAdd(itemName, restaurantId, filters, rating) {
+  onAdd() {
     this.submitted = true;
-    filters = (this.form.controls.filters.value);
-    itemName = this.form.controls.itemName.value;
-    restaurantId = this.form.controls.restaurantId.value;
-    rating = this.form.controls.rating.value;
     if (this.form.invalid) {
       return;
     } else 
     if (this.form.valid) {
+      // filters = this.addFilters(filters);
+      // this.addFoodItemService.addFoodItems(itemName, restaurantId, filters, rating);
       const foodItem = this.form.value;
       console.log(this.filters);
       this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FoodItem } from './food-item.interface';
 import { HttpClient, HttpParams} from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,18 +29,24 @@ export class AddFoodItemService {
     if (restaurantId) {
       params = params.set('restaurantId', restaurantId);
     }
-    return this.http.get(this.uri, {params});
+    return this.http.get<FoodItem[]>(this.uri, {params});
    }
 
-  addFoodItems(itemName, restaurantId, filters, rating) {
-    const meals = {
-      itemName,
-      restaurantId,
-      filters,
-      rating,
-    };
+  addFoodItems(item: FoodItem) {
+    // const itemName = item.itemName
+    // const meals = {
+    //   itemName,
+    //   item.restaurantId,
+    //   filters,
+    //   rating,
+    // };
 
-    console.log(restaurantId);
+    console.log('item: ',item);
+  
+    this.http.post(this.uri, item)
+        .subscribe(res => console.log('Done'));
+  };
+
    
   search(value:string) {
     this.searchValue = value;

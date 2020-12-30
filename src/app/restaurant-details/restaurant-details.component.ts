@@ -11,7 +11,7 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./restaurant-details.component.css']
 })
 export class RestaurantDetailsComponent implements OnInit {
-  restaurants = [];
+  restaurants = {};
   restaurant;
   foodItems;
   displayFoodItems = [];
