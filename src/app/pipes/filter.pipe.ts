@@ -24,13 +24,16 @@ export class FilterPipe implements PipeTransform {
           console.log(newValue);
           console.log(item);
           console.log(searchText);
-          if (newValue.includes(searchText) && !result.includes(item)) {
-            result.push(item);
-          }
+          if (newValue.includes(searchText) && !result.includes(item)) result.push(item);
+        } else if (Array.isArray(value)) {
+          value.forEach (v => {
+            if (typeof v == "string") 
+            if (v.toLowerCase().includes(searchText) && !result.includes(item)) result.push(item);
+          });
         };
       });  
     });
-    // if (result.length < 1) result = [ {none:'No Results'}];
+
     return result;
   }
 };

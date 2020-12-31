@@ -32,7 +32,7 @@
           </div>
           <div class="modal-body">
             <div *ngFor="let result of foodItems | appFilter: search.value" class="results"> 
-              <li *ngIf="result.itemName"> 
+              <li *ngIf="checkResult(result);"> 
                 {{result.itemName}} <br> 
                 <a [routerLink]="['/restaurant-details', result.id]" (click)="modal.dismiss()">
                   {{result.restaurantName}} 
@@ -44,14 +44,17 @@
               </li>
             </div>
             <div *ngFor="let result of restaurants | appFilter: search.value" class="results"> 
-              <li *ngIf="result.address">
+              <li *ngIf="checkResult(result);">
                 <a [routerLink]="['/../restaurant-details', result.id]" (click)="modal.dismiss()">{{result.restaurantName}} 
               </a> <br>
                 {{result.phoneNumber}} <br> 
-                <a href="{{result.website}}">{{result.website}}
+                <a href="{{result.website}}" target="_blank" rel="noopener noreferrer">{{result.website}}
                 </a>
               </li>
             </div> 
+            <div>
+              <li *ngIf="this.items.length < 1">No Results</li>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" class="close" aria-label="Close" (click)="modal.dismiss()" (click)="close()">

@@ -40,7 +40,6 @@ export class ListViewComponent implements OnInit {
         accumulator[current._id] = current;
         return accumulator;
       }, {});
-      console.log(this.restaurants);
       this.foodItems = addFoodItems;
       this.displayFoodItems = this.foodItems;
       });
@@ -61,16 +60,4 @@ export class ListViewComponent implements OnInit {
     .filter(foodItem => this.activeFilters
       .every(f => foodItem.filters.includes(f)));
   }
-
-  /*restaurantLookUp(id: string) {
-      let displayRestaurant = this.restaurants.find(restaurant => restaurant._id === id).restaurantName;
-      if (displayRestaurant) {
-        console.log(displayRestaurant);
-        return displayRestaurant;
-      } else {
-        return '';
-      }
-  }*/
-
-
 }

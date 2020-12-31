@@ -24,7 +24,7 @@ export class SearchResultsService implements OnInit {
   search(value: string) {
     let results = [];
     let restaurants = [];
-    let restaurant = [];
+    let restaurant = {};
     let foodItems = [];
 
     combineLatest (

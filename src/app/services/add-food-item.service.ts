@@ -29,21 +29,13 @@ export class AddFoodItemService {
     if (restaurantId) {
       params = params.set('restaurantId', restaurantId);
     }
+    console.log(this.http.get<FoodItem[]>(this.uri, {params}))
     return this.http.get<FoodItem[]>(this.uri, {params});
    }
 
   addFoodItems(item: FoodItem) {
-    // const itemName = item.itemName
-    // const meals = {
-    //   itemName,
-    //   item.restaurantId,
-    //   filters,
-    //   rating,
-    // };
-
     console.log('item: ',item);
-  
-    this.http.post(this.uri, item)
+    this.http.post<FoodItem[]>(this.uri, item)
         .subscribe(res => console.log('Done'));
   };
 

@@ -7,10 +7,10 @@ let Restaurants = new Schema({
     type: String
   },
   address: {
-    type: String
+    type: Array
   },
   hours: {
-    type: String
+    type: Array
   },
   website: {
     type: String

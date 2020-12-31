@@ -65,6 +65,7 @@ export class AddReviewComponent implements OnInit {
   }
 
   addFilters(selected: boolean[]) {
+    console.log('filters: ', this.filters);
     return this.filters.filter((filter, index) => selected[index]
     ).map(filter => filter.name);
   }
@@ -72,16 +73,11 @@ export class AddReviewComponent implements OnInit {
   get f() { return this.form.controls; }
 
   getName(id) {
-    id = this.form.controls.id.value;
+    id = this.form.controls.restaurantId.value;
     if (id) {
-      console.log(id);
-      const displayRestaurant = this.restaurants.find(restaurant => restaurant.id === id).restaurantName;
-      if (displayRestaurant) {
-        console.log(displayRestaurant);
-        return displayRestaurant;
-    } else {
-        return '';
-      }
+      const displayRestaurant = this.restaurants.find(restaurant => restaurant._id == id).restaurantName;
+      if (displayRestaurant) return displayRestaurant;
+      else return '';
     }
   }
 
@@ -91,10 +87,8 @@ export class AddReviewComponent implements OnInit {
       return;
     } else 
     if (this.form.valid) {
-      // filters = this.addFilters(filters);
-      // this.addFoodItemService.addFoodItems(itemName, restaurantId, filters, rating);
-      const foodItem = this.form.value;
-      console.log(this.filters);
+      let foodItem = this.form.value;
+      foodItem.filters = this.addFilters(foodItem.filters)
       this.addFoodItemService.addFoodItems({...foodItem, filters: this.addFilters(foodItem.filters),
         restaurantName: this.getName(foodItem.id)});
       this.submitted = !this.submitted;

@@ -17,6 +17,7 @@ export class SearchbarComponent implements OnInit {
   foodItems;
   restaurants;
   searchValue;
+  items = [];
 
   constructor(
     private addFoodItemService: AddFoodItemService,
@@ -25,7 +26,8 @@ export class SearchbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.searchField = new FormControl('', Validators.required);
+    this.searchField = new FormControl('', Validators.required);
+    this.items.length = 0;
   
     combineLatest ([
       this.restaurantInfoService.getRestaurants(),
@@ -33,12 +35,34 @@ export class SearchbarComponent implements OnInit {
     ])
     .subscribe(([restaurants, foodItems]) => {
       this.restaurants = restaurants;
-      this.foodItems = foodItems;
+      this.foodItems = foodItems.map(foodItem => ({...foodItem, restaurantName: this.getName(foodItem.restaurantId)}));
     });
   }
   
   onSubmit(value: string) {
     this.searchValue = value;
+  }
+
+  checkResult(item) {
+    if (item.itemName || item.address) {
+      if (!this.items.includes(item)) {
+        this.items.push(item);
+        console.log("items: ", this.items);
+      }
+      return true;
+    } else {
+      console.log("items: ", this.items);
+      return false;
+    }
+  };
+
+  getName(id) {
+    id = id;
+    if (id) {
+      const displayRestaurant = this.restaurants.find(restaurant => restaurant._id == id).restaurantName;
+      if (displayRestaurant) return displayRestaurant;
+      else return '';
+    }
   }
 
   open(content) { 

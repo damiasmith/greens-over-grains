@@ -49,6 +49,8 @@ export class RestaurantDetailsComponent implements OnInit {
       this.restaurant = restaurant;
       this.foodItems = foodItems;
       this.displayFoodItems = this.foodItems;
+      console.log(this.displayFoodItems);
+      
       });
     }
 

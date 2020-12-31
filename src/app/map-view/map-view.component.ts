@@ -77,7 +77,7 @@ export class MapViewComponent implements OnInit {
   ngOnInit() {
     this.restaurantInfoService.getRestaurants()
     .subscribe(restaurantsInfo => { this.restaurantsInfo = restaurantsInfo,
-      console.log(restaurantsInfo);
+      console.log('restaurantsInfo: ', restaurantsInfo);
     });
   }
 
