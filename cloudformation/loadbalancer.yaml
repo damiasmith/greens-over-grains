@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ECR repo greens-over-grains-api
+Parameters:
+  Vpc:
+    Default: /config/vpc
+    Description: vpc id for the account
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Vpc::Id>
+  Subnets:
+    Default: /config/public_subnet_ids
+    Description: public subnet ids for the account
+    Type: AWS::SSM::Parameter::Value<List<AWS::EC2::Subnet::Id>>
+
+Resources:
+  ApiLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: greens-over-grains-api-lb
+      Subnets: !Ref Subnets
+      SecurityGroups:
+        - !Ref ApiLoadBalancerSecurityGroup
+
+  ApiLoadBalancerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for api loadbalancer to services on ECS 
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: -1
+
+  ApiLoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref ApiLoadBalancer
+      Protocol: HTTP
+      Port: 80
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref ApiDefaultTargetGroup
+
+  ApiDefaultTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: greens-over-grains-api-default
+      VpcId: !Ref Vpc
+      Protocol: HTTP
+      Port: 80
+
+Outputs:
+  ApiLoadBalancerDNS:
+    Description: Domain name for the api loadbalancer
+    Value: !GetAtt ApiLoadBalancer.DNSName
+    Export:
+      Name: GreensOverGrainsApiDomainName
+  ApiLoadBalancerListener:
+    Description: api loadbalancer listener
+    Value: !Ref ApiLoadBalancerListener
+    Export:
+      Name: GreensOverGrainsApiLoadBalancerListener
+  ApiLoadBalancerSecurityGroup:
+    Description: Api Loadbalancer security group
+    Value: !Ref ApiLoadBalancerSecurityGroup
+    Export:
+      Name: GreensOverGrainsApiLoadBalancerSecurityGroup

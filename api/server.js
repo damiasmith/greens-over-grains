@@ -7,25 +7,25 @@ const express = require('express'),
 
 const foodItemRoute = require('./routes/food-items.route');
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+mongoose.connect(config.connectionString, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
-  err => { console.log('Can not connect to the database'+ err)}
+  err => { console.log('Cannot connect to the database'+ err)}
 );
 
 const restaurantRoute = require('./routes/restaurants.route');
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+mongoose.connect(config.connectionString, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
-  err => { console.log('Can not connect to the database'+ err)}
+  err => { console.log('Cannot connect to the database'+ err)}
 );
 
 const app = express();
+const port = process.env.PORT || 8080;
+const host = '0.0.0.0';
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/food-items', foodItemRoute);
 app.use('/restaurants', restaurantRoute);
-const port = process.env.PORT || 4000;
 
-const server = app.listen(port, function(){
-  console.log('Listening on port ' + port);
-});
+app.listen(port, host);
+console.log('Listening on port ' + port + host);

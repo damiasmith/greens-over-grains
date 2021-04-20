@@ -17,7 +17,7 @@ let FoodItems = new Schema({
   }
  
 },{
-    collection: 'fooditems'
+    collection: 'food_items'
 });
 
 module.exports = mongoose.model('fooditems', FoodItems);

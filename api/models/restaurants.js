@@ -11,9 +11,12 @@ let Restaurants = new Schema({
   },
   hours: {
     type: Array
+<<<<<<< HEAD
   },
   phoneNumber: {
     type: String
+=======
+>>>>>>> mongodb
   },
   website: {
     type: String
