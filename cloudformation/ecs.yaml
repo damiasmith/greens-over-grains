@@ -1,0 +1,235 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ECS for greens over grains
+Parameters:
+  Vpc:
+    Default: /config/vpc
+    Description: vpc id for the account
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Vpc::Id>
+  Subnets:
+    Default: /config/public_subnet_ids
+    Description: public subnet ids for the account
+    Type: AWS::SSM::Parameter::Value<List<AWS::EC2::Subnet::Id>>
+
+Resources:
+  GreensOverGrainsApiECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: GreensOverGrainsApiECSCluster
+  GreensOverGrainsAppECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: GreensOverGrainsAppECSCluster
+
+  # ApiWebListenerRule:
+  #   Type: AWS::ElasticLoadBalancingV2::ListenerRule
+  #   Properties:
+  #     ListenerArn: !ImportValue GreensOverGrainsApiLoadBalancerListener
+  #     Priority: 1
+  #     Conditions:
+  #       - Field: path-pattern
+  #         Values:
+  #           - /*
+  #     Actions:
+  #       - TargetGroupArn: !Ref ApiWebTargetGroup
+  #         Type: forward
+  
+  # ApiWebTargetGroup:
+  #   Type: AWS::ElasticLoadBalancingV2::TargetGroup
+  #   Properties:
+  #     VpcId: !Ref Vpc
+  #     Port: 80
+  #     Protocol: HTTP
+  #     Matcher:
+  #       HttpCode: 200-299
+  #     TargetType: ip
+  #     HealthCheckIntervalSeconds: 15
+  #     HealthCheckTimeoutSeconds: 10
+  #     HealthyThresholdCount: 2
+  #     HealthCheckPath: /
+  #     HealthCheckProtocol: HTTP
+  #     TargetGroupAttributes:
+  #     - Key: deregistration_delay.timeout_seconds
+  #       Value: "60"
+
+  GreensOverGrainsApiECSService:
+    Type: AWS::ECS::Service
+    # DependsOn: ApiWebListenerRule
+    Properties:
+      Cluster: !Ref GreensOverGrainsApiECSCluster
+      DesiredCount: 1
+      LaunchType: FARGATE
+      # LoadBalancers:
+      #   - ContainerName: GreensOverGrainsApi
+      #     ContainerPort: 8080
+      #     TargetGroupArn: !Ref ApiWebTargetGroup
+
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          Subnets: !Ref Subnets
+          SecurityGroups:
+            - !Ref ApiContainerSecurityGroup
+      ServiceName: greens-over-grains-api
+      TaskDefinition: !Ref GreensOverGrainsApiTaskDefinition
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+
+  GreensOverGrainsAppECSService:
+    Type: AWS::ECS::Service
+    # DependsOn: ApiWebListenerRule
+    Properties:
+      Cluster: !Ref GreensOverGrainsAppECSCluster
+      DesiredCount: 1
+      LaunchType: FARGATE
+
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          Subnets: !Ref Subnets
+          SecurityGroups:
+            - !Ref AppContainerSecurityGroup
+      ServiceName: greens-over-grains-app
+      TaskDefinition: !Ref GreensOverGrainsAppTaskDefinition
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+
+  ApiContainerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref Vpc
+      GroupDescription: Container security group for api ecs containers
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: -1
+
+  AppContainerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref Vpc
+      GroupDescription: Container security group for app ecs containers
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: -1
+
+  ApiECSTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: greens-over-grains-api-ecs-task-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+      ManagedPolicyArns: 
+        - !Ref EcsPermissionPolicy
+
+  AppECSTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: greens-over-grains-app-ecs-task-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+      ManagedPolicyArns: 
+        - !Ref EcsPermissionPolicy
+
+  EcsPermissionPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Resource: '*'
+            Action: 
+              - ecr:GetAuthorizationToken
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+          - Effect: Allow
+            Resource: '*'
+            Action: 
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+
+  ApiCloudWatchLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/ecs/greens-over-grains-api
+      RetentionInDays: 7
+
+  AppCloudWatchLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/ecs/greens-over-grains-app
+      RetentionInDays: 7
+
+  GreensOverGrainsApiTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Cpu: "256"
+      Memory: "512"
+      ExecutionRoleArn: !Ref ApiECSTaskRole
+      Family: greens-over-grains-api
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ContainerDefinitions:
+        -
+          Name: GreensOverGrainsApi
+          # Replace image link with the docker image path along with tag
+          Image: 675641071995.dkr.ecr.us-east-1.amazonaws.com/greens-over-grains-api
+          PortMappings:
+            - ContainerPort: 8080
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref ApiCloudWatchLogsGroup
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: greens-over-grains-api
+
+  GreensOverGrainsAppTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Cpu: "256"
+      Memory: "512"
+      ExecutionRoleArn: !Ref AppECSTaskRole
+      Family: greens-over-grains-app
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ContainerDefinitions:
+        -
+          Name: GreensOverGrainsApp
+          # Replace image link with the docker image path along with tag
+          Image: 675641071995.dkr.ecr.us-east-1.amazonaws.com/greens-over-grains-app
+          PortMappings:
+            - ContainerPort: 80
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref AppCloudWatchLogsGroup
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: greens-over-grains-app
+
+Outputs:
+  GreensOverGrainsApiECSClusterName:
+    Description: Name for the greens over grains api ecs cluster
+    Value: !Ref GreensOverGrainsApiECSCluster
+    Export:
+      Name: GreensOverGrainsApiECSClusterName
+
+  GreensOverGrainsAppECSClusterName:
+    Description: Name for the greens over grains app ecs cluster
+    Value: !Ref GreensOverGrainsAppECSCluster
+    Export:
+      Name: GreensOverGrainsAppECSClusterName
+

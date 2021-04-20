@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ECR repository greens over grains api
+Resources:
+  GreensOverGrainsApiRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: "greens-over-grains-api"
+  GreensOverGrainsAppRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: "greens-over-grains-app"
+Outputs:
+  GreensOverGrainsApi:
+    Value: !GetAtt GreensOverGrainsApiRepo.Arn
+    Export:
+      Name: GreensOverGrainsApiArn
+  GreensOverGrainsApp:
+    Value: !GetAtt GreensOverGrainsAppRepo.Arn
+    Export:
+      Name: GreensOverGrainsAppArn

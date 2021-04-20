@@ -20,12 +20,12 @@ mongoose.connect(config.connectionString, { useNewUrlParser: true }).then(
 );
 
 const app = express();
+const port = process.env.PORT || 8080;
+const host = '0.0.0.0';
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/food-items', foodItemRoute);
 app.use('/restaurants', restaurantRoute);
-const port = process.env.PORT || 4000;
 
-const server = app.listen(port, function(){
-  console.log('Listening on port ' + port);
-});
+app.listen(port, host);
+console.log('Listening on port ' + port + host);
